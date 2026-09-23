@@ -1,0 +1,2 @@
+ALTER TABLE Funcionario
+    ADD COLUMN cargo VARCHAR(100) NOT NULL;
