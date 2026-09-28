@@ -1,31 +1,36 @@
 package projeto.ponto.area;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sistemaponto/areas")
+@RequiredArgsConstructor
 public class Controller {
+    private final AreaService areaService;
 
     @GetMapping
-    Area[] listarAreas(){
-        return null;
+    List<AreaRecord> listarAreas(){
+        return areaService.getAllAreas();
     }
     @PostMapping
-    Boolean cadastrarArea(){
-        return false;
+    AreaRecord cadastrarArea(@RequestBody AreaRecord area){
+        return areaService.AdicionarArea(area);
     }
 
     @GetMapping("/{id}")
-    Area buscarArea(@PathVariable Long id){
-        return null;
+    AreaRecord buscarArea(@PathVariable Long id){
+        return areaService.getAreaById(id);
     }
-
+    //apenas nome necessario
     @PutMapping("/{id}")
-    Boolean alterarArea(@PathVariable Long id){
-        return false;
+    AreaRecord alterarArea(@RequestBody AreaRecord area, @PathVariable Long id){
+        return areaService.alterarTabela(area,id);
     }
     @DeleteMapping("/{id}")
-    Boolean InativarArea(@PathVariable Long id){
-        return false;
+    AreaRecord InativarArea(@PathVariable Long id){
+        return areaService.inativarArea(id);
     }
 }

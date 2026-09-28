@@ -21,7 +21,7 @@ public class Area {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private Status status = Status.ATIVA;
 
     @Column(name = "Ponto", nullable = false, columnDefinition = "POINT SRID 4326")
