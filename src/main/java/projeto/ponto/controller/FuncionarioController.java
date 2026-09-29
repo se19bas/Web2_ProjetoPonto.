@@ -46,4 +46,14 @@ public class FuncionarioController {
         funcionarioService.inativar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}/gestor")
+    public ResponseEntity<Funcionario> definirGestor(
+            @PathVariable Long id,
+            @RequestParam Long idGestor) {
+
+        return ResponseEntity.ok(
+                funcionarioService.definirGestor(id, idGestor)
+        );
+    }
 }
