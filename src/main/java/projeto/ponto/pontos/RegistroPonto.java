@@ -48,11 +48,7 @@ public class RegistroPonto {
     @Column(name = "tipo", nullable = false)
     private TipoPonto tipo;
 
-    @Column(
-            name = "distancia_area",
-            precision = 10,
-            scale = 2
-    )
+    @Column(name = "distancia_area")
     private Double distanciaArea;
 
     @Column(
