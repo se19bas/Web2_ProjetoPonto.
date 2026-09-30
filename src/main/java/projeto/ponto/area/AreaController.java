@@ -8,7 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sistemaponto/areas")
 @RequiredArgsConstructor
-public class Controller {
+public class AreaController {
     private final AreaService areaService;
 
     @GetMapping

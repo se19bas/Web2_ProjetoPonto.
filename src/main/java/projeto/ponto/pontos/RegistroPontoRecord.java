@@ -1,0 +1,7 @@
+package projeto.ponto.pontos;
+
+import java.time.LocalDateTime;
+
+public record RegistroPontoRecord(Long idRegistroPonto, Long idFuncionario, Long idAreaPermitida, LocalDateTime dataHora, TipoPonto tipo,
+                                  Double distanciaArea, Boolean dentroArea, Double latitude, Double longitude) {
+}
