@@ -3,6 +3,7 @@ package projeto.ponto.pontos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import projeto.ponto.area.Area;
+import projeto.ponto.area.AreaRecord;
 import projeto.ponto.area.AreaRepository;
 import projeto.ponto.avisos.Aviso;
 import projeto.ponto.avisos.AvisoRepository;
@@ -11,6 +12,7 @@ import projeto.ponto.model.Funcionario;
 import projeto.ponto.model.Gestor;
 import projeto.ponto.repository.FuncionarioRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -118,5 +120,24 @@ public class PontoService {
                         "Distância da área mais próxima: %.2f metros.",
                 distanciaArea
         );
+    }
+
+    public List<RegistroPontoRecord> getAllPontos(){
+        return registroPontoRepository.findAll().stream().map(ConverterPontos::toRecord).toList();
+    }
+
+    public RegistroPontoRecord getPontoById(Long id) {
+        RegistroPonto registro = registroPontoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Registro de ponto não encontrado"));
+
+        return ConverterPontos.toRecord(registro);
+    }
+    public List<RegistroPontoRecord> getPontosByFuncionario(Long idFuncionario) {
+
+        return registroPontoRepository
+                .findByFuncionario_IdUsuario(idFuncionario)
+                .stream()
+                .map(ConverterPontos::toRecord)
+                .toList();
     }
 }
