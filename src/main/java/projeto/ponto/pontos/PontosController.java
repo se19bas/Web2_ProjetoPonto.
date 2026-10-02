@@ -1,6 +1,7 @@
 package projeto.ponto.pontos;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class PontosController {
     private final PontoService pontoService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     RegistroPontoRecord cadastrarPonto(@RequestBody RegistroPontoRecord ponto){
         return pontoService.registrar(ponto);
     }

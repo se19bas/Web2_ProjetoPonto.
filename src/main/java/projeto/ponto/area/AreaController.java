@@ -1,6 +1,7 @@
 package projeto.ponto.area;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class AreaController {
         return areaService.getAllAreas();
     }
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     AreaRecord cadastrarArea(@RequestBody AreaRecord area){
         return areaService.AdicionarArea(area);
     }
