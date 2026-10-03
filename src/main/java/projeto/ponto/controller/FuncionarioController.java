@@ -1,5 +1,7 @@
 package projeto.ponto.controller;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.model.Funcionario;
@@ -52,6 +54,10 @@ public class FuncionarioController {
     }
 
     @GetMapping("/{id}/pontos")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Success"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
     public ResponseEntity<List<RegistroPontoRecord>> buscarPontos(
             @PathVariable Long id) {
 
