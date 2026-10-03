@@ -56,7 +56,6 @@ public class FuncionarioController {
     @GetMapping("/{id}/pontos")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public ResponseEntity<List<RegistroPontoRecord>> buscarPontos(
             @PathVariable Long id) {

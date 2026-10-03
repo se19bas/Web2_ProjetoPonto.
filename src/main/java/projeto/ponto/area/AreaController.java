@@ -17,7 +17,6 @@ public class AreaController {
     @GetMapping
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     List<AreaRecord> listarAreas(){
         return areaService.getAllAreas();
@@ -26,7 +25,6 @@ public class AreaController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Created"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     AreaRecord cadastrarArea(@RequestBody AreaRecord area){
         return areaService.AdicionarArea(area);
@@ -35,7 +33,6 @@ public class AreaController {
     @GetMapping("/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     AreaRecord buscarArea(@PathVariable Long id){
         return areaService.getAreaById(id);
@@ -44,7 +41,6 @@ public class AreaController {
     @PutMapping("/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     AreaRecord alterarArea(@RequestBody AreaRecord area, @PathVariable Long id){
         return areaService.alterarTabela(area,id);
@@ -52,7 +48,6 @@ public class AreaController {
     @DeleteMapping("/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     AreaRecord InativarArea(@PathVariable Long id){
         return areaService.inativarArea(id);

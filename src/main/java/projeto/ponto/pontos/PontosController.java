@@ -18,7 +18,6 @@ public class PontosController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Created"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     RegistroPontoRecord cadastrarPonto(@RequestBody RegistroPontoRecord ponto){
         return pontoService.registrar(ponto);
@@ -27,7 +26,6 @@ public class PontosController {
     @GetMapping
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     List<RegistroPontoRecord> pegarPontos(){
         return pontoService.getAllPontos();
@@ -36,7 +34,6 @@ public class PontosController {
     @GetMapping("/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public RegistroPontoRecord pegarPontoPorId(@PathVariable Long id) {
         return pontoService.getPontoById(id);

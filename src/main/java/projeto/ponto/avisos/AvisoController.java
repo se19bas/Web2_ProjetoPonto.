@@ -16,7 +16,6 @@ public class AvisoController {
     @GetMapping("/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public AvisoRecord consultarAviso(@PathVariable Long id) {
         return avisoService.consultarAviso(id);
@@ -25,7 +24,6 @@ public class AvisoController {
     @PutMapping("/{id}/ler")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public AvisoRecord lerAviso(@PathVariable Long id) {
         return avisoService.lerAviso(id);
@@ -34,7 +32,6 @@ public class AvisoController {
     @GetMapping("/{id}/gestor")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public List<AvisoRecord> avisosParaGestor(@PathVariable Long id) {
         return avisoService.avisosParaGestor(id);
