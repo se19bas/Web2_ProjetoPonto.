@@ -1,5 +1,6 @@
 package projeto.ponto.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.model.Funcionario;
@@ -25,6 +26,7 @@ public class GestorController {
     }
 
     @PostMapping("/promover/{idFuncionario}")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Gestor> promoverParaGestor(
             @PathVariable Long idFuncionario,
             @RequestParam String setor) {

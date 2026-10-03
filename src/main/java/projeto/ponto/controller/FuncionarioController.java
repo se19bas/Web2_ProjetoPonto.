@@ -1,5 +1,6 @@
 package projeto.ponto.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.model.Funcionario;
@@ -29,6 +30,7 @@ public class FuncionarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Funcionario> cadastrar(@RequestBody Funcionario funcionario) {
         return ResponseEntity.ok(funcionarioService.cadastrar(funcionario));
     }
