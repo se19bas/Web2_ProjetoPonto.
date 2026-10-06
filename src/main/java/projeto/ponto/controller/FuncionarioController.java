@@ -1,5 +1,6 @@
 package projeto.ponto.controller;
 
+import org.springframework.http.HttpStatus;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,7 @@ public class FuncionarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Funcionario> cadastrar(@RequestBody Funcionario funcionario) {
         return ResponseEntity.ok(funcionarioService.cadastrar(funcionario));
     }
@@ -53,6 +55,13 @@ public class FuncionarioController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/gestor")
+    public ResponseEntity<Funcionario> definirGestor(
+            @PathVariable Long id,
+            @RequestParam Long idGestor) {
+
+        return ResponseEntity.ok(
+                funcionarioService.definirGestor(id, idGestor)
     @GetMapping("/{id}/pontos")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),

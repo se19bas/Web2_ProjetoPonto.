@@ -1,5 +1,7 @@
 package projeto.ponto.service;
 
+import projeto.ponto.model.Gestor;
+import projeto.ponto.repository.GestorRepository;
 import org.springframework.stereotype.Service;
 import projeto.ponto.model.Funcionario;
 import projeto.ponto.repository.FuncionarioRepository;
@@ -14,13 +16,16 @@ public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
     private final UsuarioRepository usuarioRepository;
+    private final GestorRepository gestorRepository;
 
     public FuncionarioService(
             FuncionarioRepository funcionarioRepository,
-            UsuarioRepository usuarioRepository) {
+            UsuarioRepository usuarioRepository,
+            GestorRepository gestorRepository) {
 
         this.funcionarioRepository = funcionarioRepository;
         this.usuarioRepository = usuarioRepository;
+        this.gestorRepository = gestorRepository;
     }
 
     public List<Funcionario> listarTodos() {
@@ -75,4 +80,22 @@ public class FuncionarioService {
 
         usuarioRepository.save(usuario);
     }
-}
+
+    public Funcionario definirGestor(Long idFuncionario, Long idGestor) {
+
+        Funcionario funcionario = funcionarioRepository.findById(idFuncionario)
+                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+
+        Gestor gestor = gestorRepository.findById(idGestor)
+                .orElseThrow(() -> new RuntimeException("Gestor não encontrado"));
+
+        funcionario.setGestor(gestor);
+
+        return funcionarioRepository.save(funcionario);
+    }
+
+    public List<Funcionario> listarPorGestor(Long idGestor) {
+        return funcionarioRepository.findByGestor_IdUsuario(idGestor);
+    }
+
+}   
