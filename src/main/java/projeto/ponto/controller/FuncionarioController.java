@@ -62,6 +62,9 @@ public class FuncionarioController {
 
         return ResponseEntity.ok(
                 funcionarioService.definirGestor(id, idGestor)
+        );
+    }
+
     @GetMapping("/{id}/pontos")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Success"),
