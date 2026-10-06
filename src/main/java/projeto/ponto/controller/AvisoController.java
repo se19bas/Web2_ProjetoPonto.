@@ -1,9 +1,11 @@
-package projeto.ponto.avisos;
+package projeto.ponto.controller;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import projeto.ponto.service.AvisoService;
+import projeto.ponto.model.Avisos.AvisoRecord;
 
 import java.util.List;
 

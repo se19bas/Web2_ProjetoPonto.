@@ -1,4 +1,4 @@
-package projeto.ponto.avisos;
+package projeto.ponto.Enum;
 
 public enum AvisosStatus {
     NAO_LIDO,

@@ -1,7 +1,12 @@
-package projeto.ponto.avisos;
+package projeto.ponto.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import projeto.ponto.Enum.AvisosStatus;
+import projeto.ponto.dto.ConverterAviso;
+import projeto.ponto.model.Avisos.Aviso;
+import projeto.ponto.model.Avisos.AvisoRecord;
+import projeto.ponto.repository.AvisoRepository;
 
 import java.util.List;
 

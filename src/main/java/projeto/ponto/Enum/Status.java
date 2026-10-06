@@ -1,4 +1,4 @@
-package projeto.ponto.area;
+package projeto.ponto.Enum;
 
 public enum Status {
     ATIVA,

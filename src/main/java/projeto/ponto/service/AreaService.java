@@ -1,4 +1,4 @@
-package projeto.ponto.area;
+package projeto.ponto.service;
 
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Coordinate;
@@ -6,6 +6,10 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.stereotype.Service;
+import projeto.ponto.Enum.Status;
+import projeto.ponto.model.Area.Area;
+import projeto.ponto.model.Area.AreaRecord;
+import projeto.ponto.repository.AreaRepository;
 
 import java.util.List;
 

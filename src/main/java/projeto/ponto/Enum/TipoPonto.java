@@ -1,4 +1,4 @@
-package projeto.ponto.pontos;
+package projeto.ponto.Enum;
 
 public enum TipoPonto {
 

@@ -1,11 +1,13 @@
-package projeto.ponto.pontos;
+package projeto.ponto.dto;
 
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
-import projeto.ponto.area.Area;
+import projeto.ponto.model.Area.Area;
 import projeto.ponto.model.Funcionario;
+import projeto.ponto.model.Pontos.RegistroPonto;
+import projeto.ponto.model.Pontos.RegistroPontoRecord;
 
 public final class ConverterPontos {
 

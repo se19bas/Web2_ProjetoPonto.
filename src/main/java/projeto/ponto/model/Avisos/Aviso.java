@@ -1,9 +1,10 @@
-package projeto.ponto.avisos;
+package projeto.ponto.model.Avisos;
 
 import jakarta.persistence.*;
 import lombok.*;
+import projeto.ponto.Enum.AvisosStatus;
 import projeto.ponto.model.Gestor;
-import projeto.ponto.pontos.RegistroPonto;
+import projeto.ponto.model.Pontos.RegistroPonto;
 
 @Entity
 @Table(name = "aviso")

@@ -1,6 +1,7 @@
-package projeto.ponto.avisos;
+package projeto.ponto.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import projeto.ponto.model.Avisos.Aviso;
 
 import java.util.List;
 

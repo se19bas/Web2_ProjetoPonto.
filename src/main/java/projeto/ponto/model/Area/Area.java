@@ -1,8 +1,9 @@
-package projeto.ponto.area;
+package projeto.ponto.model.Area;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.locationtech.jts.geom.Point;
+import projeto.ponto.Enum.Status;
 
 @Entity
 @Table(name = "areapermitida")

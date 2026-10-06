@@ -1,4 +1,4 @@
-package projeto.ponto.pontos;
+package projeto.ponto.model.Pontos;
 
 public interface AreaMaisProxima {
 

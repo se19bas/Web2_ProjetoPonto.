@@ -1,4 +1,6 @@
-package projeto.ponto.pontos;
+package projeto.ponto.model.Pontos;
+
+import projeto.ponto.Enum.TipoPonto;
 
 import java.time.LocalDateTime;
 

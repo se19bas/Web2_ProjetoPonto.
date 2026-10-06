@@ -1,5 +1,7 @@
-package projeto.ponto.avisos;
+package projeto.ponto.dto;
 
+import projeto.ponto.model.Avisos.Aviso;
+import projeto.ponto.model.Avisos.AvisoRecord;
 import projeto.ponto.model.Gestor;
 
 public class ConverterAviso {

@@ -6,8 +6,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.model.Funcionario;
-import projeto.ponto.pontos.PontoService;
-import projeto.ponto.pontos.RegistroPontoRecord;
+import projeto.ponto.service.PontoService;
+import projeto.ponto.model.Pontos.RegistroPontoRecord;
 import projeto.ponto.service.FuncionarioService;
 
 import java.util.List;

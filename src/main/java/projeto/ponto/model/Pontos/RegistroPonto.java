@@ -1,10 +1,11 @@
-package projeto.ponto.pontos;
+package projeto.ponto.model.Pontos;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.locationtech.jts.geom.Point;
-import projeto.ponto.area.Area;
+import projeto.ponto.model.Area.Area;
 import projeto.ponto.model.Funcionario;
+import projeto.ponto.Enum.TipoPonto;
 
 import java.time.LocalDateTime;
 

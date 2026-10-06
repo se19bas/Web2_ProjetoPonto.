@@ -1,10 +1,12 @@
-package projeto.ponto.area;
+package projeto.ponto.controller;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import projeto.ponto.service.AreaService;
+import projeto.ponto.model.Area.AreaRecord;
 
 import java.util.List;
 

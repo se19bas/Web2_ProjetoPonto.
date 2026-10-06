@@ -1,16 +1,20 @@
-package projeto.ponto.pontos;
+package projeto.ponto.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import projeto.ponto.area.Area;
-import projeto.ponto.area.AreaRecord;
-import projeto.ponto.area.AreaRepository;
-import projeto.ponto.avisos.Aviso;
-import projeto.ponto.avisos.AvisoRepository;
-import projeto.ponto.avisos.AvisosStatus;
+import projeto.ponto.model.Area.Area;
+import projeto.ponto.model.Pontos.AreaMaisProxima;
+import projeto.ponto.dto.ConverterPontos;
+import projeto.ponto.repository.AreaRepository;
+import projeto.ponto.model.Avisos.Aviso;
+import projeto.ponto.repository.AvisoRepository;
+import projeto.ponto.Enum.AvisosStatus;
 import projeto.ponto.model.Funcionario;
 import projeto.ponto.model.Gestor;
+import projeto.ponto.model.Pontos.RegistroPonto;
+import projeto.ponto.model.Pontos.RegistroPontoRecord;
 import projeto.ponto.repository.FuncionarioRepository;
+import projeto.ponto.repository.RegistroPontoRepository;
 
 import java.util.List;
 import java.util.Optional;

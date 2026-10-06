@@ -1,10 +1,11 @@
-package projeto.ponto.area;
+package projeto.ponto.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import projeto.ponto.pontos.AreaMaisProxima;
+import projeto.ponto.model.Area.Area;
+import projeto.ponto.model.Pontos.AreaMaisProxima;
 
 import java.util.Optional;
 
