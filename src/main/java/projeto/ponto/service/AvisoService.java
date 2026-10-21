@@ -7,6 +7,9 @@ import projeto.ponto.dto.ConverterAviso;
 import projeto.ponto.model.Avisos.Aviso;
 import projeto.ponto.model.Avisos.AvisoRecord;
 import projeto.ponto.repository.AvisoRepository;
+import projeto.ponto.repository.UsuarioRepository;
+import projeto.ponto.model.Usuario;
+import projeto.ponto.repository.UsuarioRepository;
 
 import java.util.List;
 
@@ -15,6 +18,7 @@ import java.util.List;
 public class AvisoService {
 
     private final AvisoRepository avisoRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public AvisoRecord consultarAviso(Long id) {
         Aviso aviso = avisoRepository.findById(id)
@@ -36,6 +40,21 @@ public class AvisoService {
 
     public List<AvisoRecord> avisosParaGestor(Long idGestor) {
         return avisoRepository.findByGestor_IdUsuario(idGestor)
+                .stream()
+                .map(ConverterAviso::toRecord)
+                .toList();
+    }
+
+    public List<AvisoRecord> meusAvisos(String email) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
+
+        Long idUsuario = usuario.getIdUsuario();
+
+        return avisoRepository
+                .findByRegistro_Funcionario_IdUsuario(idUsuario)
                 .stream()
                 .map(ConverterAviso::toRecord)
                 .toList();

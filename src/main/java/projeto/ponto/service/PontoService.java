@@ -5,16 +5,14 @@ import org.springframework.stereotype.Service;
 import projeto.ponto.model.Area.Area;
 import projeto.ponto.model.Pontos.AreaMaisProxima;
 import projeto.ponto.dto.ConverterPontos;
-import projeto.ponto.repository.AreaRepository;
+import projeto.ponto.model.Usuario;
+import projeto.ponto.repository.*;
 import projeto.ponto.model.Avisos.Aviso;
-import projeto.ponto.repository.AvisoRepository;
 import projeto.ponto.Enum.AvisosStatus;
 import projeto.ponto.model.Funcionario;
 import projeto.ponto.model.Gestor;
 import projeto.ponto.model.Pontos.RegistroPonto;
 import projeto.ponto.model.Pontos.RegistroPontoRecord;
-import projeto.ponto.repository.FuncionarioRepository;
-import projeto.ponto.repository.RegistroPontoRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +27,7 @@ public class PontoService {
     private final FuncionarioRepository funcionarioRepository;
     private final AreaRepository areaRepository;
     private final AvisoRepository avisoRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public RegistroPontoRecord registrar(
             RegistroPontoRecord record
@@ -140,6 +139,21 @@ public class PontoService {
 
         return registroPontoRepository
                 .findByFuncionario_IdUsuario(idFuncionario)
+                .stream()
+                .map(ConverterPontos::toRecord)
+                .toList();
+    }
+
+    public List<RegistroPontoRecord> getMeusPontos(String email) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
+
+        Long idUsuario = usuario.getIdUsuario();
+
+        return registroPontoRepository
+                .findByFuncionario_IdUsuario(idUsuario)
                 .stream()
                 .map(ConverterPontos::toRecord)
                 .toList();
