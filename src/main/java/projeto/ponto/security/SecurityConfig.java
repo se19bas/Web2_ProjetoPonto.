@@ -1,4 +1,4 @@
-package projeto.ponto.config;
+package projeto.ponto.security ;
 
 import projeto.ponto.security.JwtAuthenticationFilter;
 
@@ -42,7 +42,8 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"
                         ).permitAll()
 
-                        .requestMatchers("/sistemaponto/gestores/hierarquia")
+                        .requestMatchers("/sistemaponto/gestores/hierarquia",
+                                "/sistemaponto/gestores/")
                         .hasRole("GESTOR")
 
                         .anyRequest().authenticated()
