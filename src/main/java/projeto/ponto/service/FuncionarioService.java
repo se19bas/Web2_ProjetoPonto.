@@ -39,6 +39,7 @@ public class FuncionarioService {
     public Optional<Funcionario> buscarPorId(Long id) {
         return funcionarioRepository.findById(id);
     }
+
     public Funcionario cadastrar(Funcionario funcionario) {
 
         Usuario usuario = funcionario.getUsuario();
