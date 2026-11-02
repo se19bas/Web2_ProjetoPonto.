@@ -6,6 +6,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import projeto.ponto.service.TokenRevocationService;
 
 import org.springframework.security.authentication
         .UsernamePasswordAuthenticationToken;
@@ -24,13 +25,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+    private final TokenRevocationService tokenRevocationService;
 
     public JwtAuthenticationFilter(
             JwtService jwtService,
-            UserDetailsService userDetailsService
+            UserDetailsService userDetailsService,
+            TokenRevocationService tokenRevocationService
     ) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
+        this.tokenRevocationService = tokenRevocationService;
     }
 
     @Override
@@ -67,7 +71,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UserDetails usuario =
                         userDetailsService.loadUserByUsername(email);
 
-                if (jwtService.tokenValido(token, usuario)) {
+                if (jwtService.tokenValido(token, usuario)
+                        && !tokenRevocationService.estaRevogado(token)) {
                     var autenticacao =
                             new UsernamePasswordAuthenticationToken(
                                     usuario,

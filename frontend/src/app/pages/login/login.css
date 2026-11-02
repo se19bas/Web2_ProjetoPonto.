@@ -1,0 +1,82 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #f3f6fa;
+  font-family: Arial, sans-serif;
+}
+
+.cartao-login {
+  width: 100%;
+  max-width: 400px;
+  padding: 36px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin: 0 0 10px;
+  color: #0063e2;
+  font-size: 28px;
+  text-align: center;
+}
+
+.subtitulo {
+  margin: 0 0 28px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #0063e2;
+  box-shadow: 0 0 0 2px rgba(0, 99, 226, 0.12);
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0063e2;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #004fb5;
+}
