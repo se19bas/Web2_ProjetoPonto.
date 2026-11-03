@@ -1,0 +1,79 @@
+name: Build e deploy frontend - Azure App Service (Linux / Node)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy-frontend-azure.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '26'          # deve ser igual ao runtime Node do App Service
+  APP_DIR: frontend
+  DIST_DIR: frontend/dist/frontend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.APP_DIR }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ${{ env.APP_DIR }}/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # Gera dist/frontend/browser (arquivos estaticos) e dist/frontend/server (servidor SSR Express).
+      # O server.mjs ja vem empacotado com as dependencias, nao precisa de node_modules no Azure.
+      # API_URL = URL publica do backend (variavel do repositorio no GitHub), embutida no bundle.
+      - name: Build
+        env:
+          API_URL: ${{ vars.API_URL }}
+        run: |
+          if [ -z "$API_URL" ]; then
+            echo "::error::Defina a variavel API_URL no repositorio (Settings > Secrets and variables > Actions > Variables)"
+            exit 1
+          fi
+          npm run build -- --define "NG_API_URL='${API_URL%/}'"
+
+      - name: Publicar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-app
+          path: ${{ env.DIST_DIR }}
+          retention-days: 7
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: production-frontend
+      url: ${{ steps.deploy.outputs.webapp-url }}
+
+    steps:
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-app
+          path: app
+
+      - name: Deploy no Azure App Service
+        id: deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_FRONTEND_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_FRONTEND_PUBLISH_PROFILE }}
+          package: app
