@@ -2,6 +2,7 @@ package projeto.ponto.service;
 
 import projeto.ponto.model.Usuario;
 import projeto.ponto.repository.UsuarioRepository;
+import projeto.ponto.repository.GestorRepository;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,14 @@ import org.springframework.stereotype.Service;
 public class UsuarioDetailsService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
+    private final GestorRepository gestorRepository;
 
     public UsuarioDetailsService(
-            UsuarioRepository usuarioRepository
+            UsuarioRepository usuarioRepository,
+            GestorRepository gestorRepository
     ) {
         this.usuarioRepository = usuarioRepository;
+        this.gestorRepository = gestorRepository;
     }
 
     @Override
@@ -30,9 +34,18 @@ public class UsuarioDetailsService implements UserDetailsService {
                         )
                 );
 
+        String role = gestorRepository.existsById(usuario.getIdUsuario())
+                ? "ROLE_GESTOR"
+                : "ROLE_USER";
+
+        System.out.println(
+                "Usuário: " + usuario.getEmail() +
+                        " | Role: " + role
+        );
+
         return User.withUsername(usuario.getEmail())
                 .password(usuario.getSenha())
-                .authorities("ROLE_USER")
+                .authorities(role)
                 .disabled(
                         usuario.getStatus() != Usuario.Status.ATIVO
                 )

@@ -5,6 +5,11 @@ import projeto.ponto.dto.AuthResponse;
 import projeto.ponto.dto.LoginRequest;
 import projeto.ponto.dto.RefreshTokenRequest;
 import projeto.ponto.security.JwtService;
+import projeto.ponto.repository.UsuarioRepository;
+import projeto.ponto.model.Usuario;
+import projeto.ponto.dto.UsuarioLogadoResponse;
+import projeto.ponto.dto.AlterarSenhaRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,15 +26,24 @@ public class AutenticacaoService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenRevocationService tokenRevocationService;
 
     public AutenticacaoService(
             AuthenticationManager authenticationManager,
             JwtService jwtService,
-            UserDetailsService userDetailsService
+            UserDetailsService userDetailsService,
+            UsuarioRepository usuarioRepository,
+            PasswordEncoder passwordEncoder,
+            TokenRevocationService tokenRevocationService
     ) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
+        this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenRevocationService = tokenRevocationService;
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -80,6 +94,13 @@ public class AutenticacaoService {
 
             String novoToken = jwtService.gerarToken(usuario);
 
+            if (tokenRevocationService.estaRevogado(refreshToken)) {
+                throw new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED,
+                        "Refresh token revogado"
+                );
+            }
+
             return new AuthResponse(novoToken, refreshToken);
 
         } catch (ResponseStatusException e) {
@@ -90,5 +111,86 @@ public class AutenticacaoService {
                     "Refresh token inválido ou expirado"
             );
         }
+    }
+
+    public UsuarioLogadoResponse consultarUsuarioLogado(
+            String email
+    ) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Usuário não encontrado"
+                ));
+
+        return new UsuarioLogadoResponse(
+                usuario.getIdUsuario(),
+                usuario.getNome(),
+                usuario.getCpf(),
+                usuario.getEmail(),
+                usuario.getStatus()
+        );
+    }
+
+    public void alterarSenha(
+            String email,
+            AlterarSenhaRequest request
+    ) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Usuário não encontrado"
+                ));
+
+        if (!passwordEncoder.matches(
+                request.senhaAtual(),
+                usuario.getSenha()
+        )) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Senha atual incorreta"
+            );
+        }
+
+        usuario.setSenha(
+                passwordEncoder.encode(request.novaSenha())
+        );
+
+        usuarioRepository.save(usuario);
+    }
+
+    public void logout(
+            String accessToken,
+            String refreshToken,
+            String email
+    ) {
+
+        UserDetails usuario =
+                userDetailsService.loadUserByUsername(email);
+
+        if (!jwtService.tokenValido(accessToken, usuario)) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED,
+                    "Access token inválido"
+            );
+        }
+
+        if (!jwtService.refreshTokenValido(refreshToken, usuario)) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED,
+                    "Refresh token inválido"
+            );
+        }
+
+        tokenRevocationService.revogar(
+                accessToken,
+                jwtService.extrairExpiracao(accessToken)
+        );
+
+        tokenRevocationService.revogar(
+                refreshToken,
+                jwtService.extrairExpiracao(refreshToken)
+        );
     }
 }

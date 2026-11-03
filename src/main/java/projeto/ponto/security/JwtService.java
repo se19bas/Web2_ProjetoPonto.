@@ -107,4 +107,8 @@ public class JwtService {
                 Decoders.BASE64.decode(secret)
         );
     }
+
+    public Date extrairExpiracao(String token) {
+        return extrairClaims(token).getExpiration();
+    }
 }
