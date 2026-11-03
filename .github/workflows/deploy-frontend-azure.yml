@@ -49,6 +49,22 @@ jobs:
           fi
           npm run build -- --define "NG_API_URL='${API_URL%/}'"
 
+      # O Azure (Node/Linux) executa "npm start" quando encontra um package.json.
+      # Sem isso ele sobe a pagina padrao "Welcome" do App Service.
+      - name: Gerar package.json de execucao
+        working-directory: ${{ env.DIST_DIR }}
+        run: |
+          cat > package.json <<EOF
+          {
+            "name": "ponto-frontend",
+            "private": true,
+            "type": "module",
+            "engines": { "node": ">=${NODE_VERSION}" },
+            "scripts": { "start": "node server/server.mjs" }
+          }
+          EOF
+          cat package.json
+
       - name: Publicar artefato
         uses: actions/upload-artifact@v4
         with:
