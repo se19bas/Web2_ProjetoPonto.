@@ -61,7 +61,7 @@ public class RegistroPonto {
     @Column(
             name = "ponto",
             nullable = false,
-            columnDefinition = "POINT SRID 4326"
+            columnDefinition = "geometry(Point,4326)"
     )
     private Point ponto;
 }

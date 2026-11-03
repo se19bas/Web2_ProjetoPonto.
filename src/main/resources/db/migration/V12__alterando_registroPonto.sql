@@ -1,5 +1,8 @@
 ALTER TABLE registroponto
-DROP COLUMN latitude,
-DROP COLUMN longitude,
-ADD COLUMN ponto POINT NOT NULL SRID 4326,
-ADD SPATIAL INDEX idx_ponto (ponto);
+    DROP COLUMN latitude,
+    DROP COLUMN longitude,
+    ADD COLUMN ponto geometry(Point, 4326) NOT NULL;
+
+CREATE INDEX idx_registroponto_ponto
+    ON registroponto
+    USING GIST (ponto);

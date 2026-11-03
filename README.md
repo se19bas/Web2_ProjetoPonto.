@@ -13,7 +13,8 @@ Tecnologia	Versão
 ☕ Java	26
 📦 Maven	—
 🌱 Spring Boot	4.1.1
-🗄️ MySQL	9.4
+🗄️ PostgreSQL	16+
+🌍 PostGIS	3.x
 📚 Dependências
 
 Spring Web
@@ -30,36 +31,38 @@ Lombok
 
 Antes de iniciar o projeto, siga os passos abaixo.
 
-1. Inicie o MySQL
+1. Inicie o PostgreSQL
 
-Certifique-se de que o serviço do MySQL esteja em execução.
+Certifique-se de que o serviço do PostgreSQL esteja em execução e que a extensão PostGIS esteja instalada.
 
 2. Crie o banco de dados
 
-Execute o seguinte comando no MySQL:
+Execute o seguinte comando no PostgreSQL (psql ou pgAdmin):
 
 CREATE DATABASE projetoponto;
 
+📌 A extensão PostGIS é habilitada automaticamente pelo Flyway (CREATE EXTENSION IF NOT EXISTS postgis). Caso o usuário da aplicação não tenha permissão para criar extensões, execute manualmente no banco projetoponto:
+
+CREATE EXTENSION postgis;
+
 3. Configure o acesso ao banco
 
-As configurações de porta, usuário e senha do banco de dados estão no arquivo:
+As configurações do banco são lidas de variáveis de ambiente (usadas em src/main/resources/application.properties):
 
-src/main/resources/application.properties
-
-
-📌 As configurações principais estão nas linhas 3 a 5.
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/projetoponto
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=sua_senha
+API_SECURITY_TOKEN_SECRET=seu_segredo_jwt
 
 4. Execute o projeto
 
 Com o banco configurado, execute a aplicação utilizando o Maven ou sua IDE de preferência.
 
-🗄️ Download do MySQL
+🗄️ Download do PostgreSQL / PostGIS
 
-Caso ainda não tenha o MySQL instalado, faça o download pelo arquivo oficial de versões:
+PostgreSQL: https://www.postgresql.org/download/
 
-https://downloads.mysql.com/archives/community/
-
-⚠️ Atenção: verifique se a versão instalada é compatível com a versão utilizada no projeto (MySQL 9.4).
+PostGIS: no Windows, instale pelo Stack Builder que acompanha o instalador do PostgreSQL (Spatial Extensions → PostGIS). Alternativa com Docker: imagem postgis/postgis.
 
 📖 Swagger / OpenAPI
 
@@ -73,7 +76,7 @@ Sistema Ponto
 ├── Java 26
 ├── Maven
 ├── Spring Boot 4.1.1
-├── MySQL 9.4
+├── PostgreSQL 16+ / PostGIS 3.x
 │
 ├── Spring Web
 ├── Spring Data JPA
@@ -83,11 +86,11 @@ Sistema Ponto
 
 ✅ Checklist
 
- Iniciar o serviço MySQL
+ Iniciar o serviço PostgreSQL (com PostGIS)
 
  Criar o banco projetoponto
 
- Conferir usuário, senha e porta no application.properties
+ Configurar as variáveis de ambiente do banco e do JWT
 
  Executar o projeto
 

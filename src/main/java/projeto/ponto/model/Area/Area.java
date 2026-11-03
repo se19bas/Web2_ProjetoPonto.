@@ -25,7 +25,7 @@ public class Area {
     @Column(name = "status")
     private Status status = Status.ATIVA;
 
-    @Column(name = "Ponto", nullable = false, columnDefinition = "POINT SRID 4326")
+    @Column(name = "ponto", nullable = false, columnDefinition = "geometry(Point,4326)")
     private Point ponto;
 
 
