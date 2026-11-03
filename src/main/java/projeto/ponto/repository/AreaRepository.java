@@ -14,17 +14,17 @@ public interface AreaRepository extends JpaRepository<Area, Long> {
 
     @Query(value = """
         SELECT
-            a.idAreaPermitida AS idArea,
-            ST_Distance_Sphere(
-                a.Ponto,
-                ST_SRID(
-                    POINT(:longitude, :latitude),
+            a.idAreaPermitida AS "idArea",
+            ST_DistanceSphere(
+                a.ponto,
+                ST_SetSRID(
+                    ST_MakePoint(:longitude, :latitude),
                     4326
                 )
-            ) AS distancia
+            ) AS "distancia"
         FROM areapermitida a
         WHERE a.status = 'ATIVA'
-        ORDER BY distancia ASC
+        ORDER BY "distancia" ASC
         LIMIT 1
         """, nativeQuery = true)
     Optional<AreaMaisProxima> encontrarAreaMaisProxima(

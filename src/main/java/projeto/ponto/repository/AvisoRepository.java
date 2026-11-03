@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface AvisoRepository extends JpaRepository<Aviso, Long> {
     List<Aviso> findByGestor_IdUsuario(Long idGestor);
+    List<Aviso> findByRegistro_Funcionario_IdUsuario(Long idUsuario);
 }

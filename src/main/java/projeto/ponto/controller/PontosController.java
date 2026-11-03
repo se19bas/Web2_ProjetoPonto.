@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.model.Pontos.RegistroPontoRecord;
 import projeto.ponto.service.PontoService;
@@ -39,5 +41,13 @@ public class PontosController {
     })
     public RegistroPontoRecord pegarPontoPorId(@PathVariable Long id) {
         return pontoService.getPontoById(id);
+    }
+
+    @GetMapping("/meus-pontos")
+    public List<RegistroPontoRecord> pegarMeusPontos( @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        return pontoService.getMeusPontos(
+                usuarioAutenticado.getUsername()
+        );
     }
 }

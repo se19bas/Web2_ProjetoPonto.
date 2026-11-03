@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import projeto.ponto.service.AvisoService;
 import projeto.ponto.model.Avisos.AvisoRecord;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -37,6 +39,15 @@ public class AvisoController {
     })
     public List<AvisoRecord> avisosParaGestor(@PathVariable Long id) {
         return avisoService.avisosParaGestor(id);
+    }
+
+    @GetMapping("/meus-avisos")
+    public List<AvisoRecord> meusAvisos(
+            @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        return avisoService.meusAvisos(
+                usuarioAutenticado.getUsername()
+        );
     }
 
 

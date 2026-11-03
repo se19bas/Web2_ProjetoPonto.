@@ -7,6 +7,7 @@ import projeto.ponto.model.Funcionario;
 import projeto.ponto.repository.FuncionarioRepository;
 import projeto.ponto.repository.UsuarioRepository;
 import projeto.ponto.model.Usuario;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,15 +18,18 @@ public class FuncionarioService {
     private final FuncionarioRepository funcionarioRepository;
     private final UsuarioRepository usuarioRepository;
     private final GestorRepository gestorRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public FuncionarioService(
             FuncionarioRepository funcionarioRepository,
             UsuarioRepository usuarioRepository,
-            GestorRepository gestorRepository) {
+            GestorRepository gestorRepository,
+            PasswordEncoder passwordEncoder) {
 
         this.funcionarioRepository = funcionarioRepository;
         this.usuarioRepository = usuarioRepository;
         this.gestorRepository = gestorRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<Funcionario> listarTodos() {
@@ -35,9 +39,14 @@ public class FuncionarioService {
     public Optional<Funcionario> buscarPorId(Long id) {
         return funcionarioRepository.findById(id);
     }
+
     public Funcionario cadastrar(Funcionario funcionario) {
 
         Usuario usuario = funcionario.getUsuario();
+
+        usuario.setSenha(
+                passwordEncoder.encode(usuario.getSenha())
+        );
 
         usuarioRepository.save(usuario);
 
@@ -57,7 +66,7 @@ public class FuncionarioService {
         usuarioExistente.setNome(usuarioAtualizado.getNome());
         usuarioExistente.setCpf(usuarioAtualizado.getCpf());
         usuarioExistente.setEmail(usuarioAtualizado.getEmail());
-        usuarioExistente.setSenha(usuarioAtualizado.getSenha());
+        //usuarioExistente.setSenha(usuarioAtualizado.getSenha());
         usuarioExistente.setStatus(usuarioAtualizado.getStatus());
 
         funcionarioExistente.setCargo(funcionarioAtualizado.getCargo());

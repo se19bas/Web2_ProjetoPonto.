@@ -1,0 +1,30 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.pagina-inicial {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+h1 {
+  color: #0063e2;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.acoes {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: #f3f6fa;
+  border-radius: 8px;
+}
