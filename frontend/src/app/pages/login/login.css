@@ -1,3 +1,4 @@
+
 :host {
   display: block;
   min-height: 100vh;
@@ -8,75 +9,148 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 30px;
   box-sizing: border-box;
-  background-color: #f3f6fa;
+  background-color: #ebece7;
   font-family: Arial, sans-serif;
 }
 
+/* ORGANIZAÇÃO DOS DOIS BLOCOS */
+
+.conteudo-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 950px;
+}
+
+/* LOGO */
+
+.area-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.logo-metaponto {
+  display: block;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  background-color: #ebece7;
+}
+
+/* CARTÃO DE LOGIN */
+
 .cartao-login {
   width: 100%;
-  max-width: 400px;
-  padding: 36px;
+  max-width: 350px;
+  padding: 40px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: #122947;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 25px rgba(18, 41, 71, 0.16);
 }
 
 h1 {
   margin: 0 0 10px;
-  color: #0063e2;
+  color: #FFFFFF;
   font-size: 28px;
   text-align: center;
 }
 
 .subtitulo {
-  margin: 0 0 28px;
-  color: #64748b;
+  margin: 0 0 32px;
+  color: #CBD5E1;
   font-size: 14px;
   text-align: center;
 }
+
+/* CAMPOS */
 
 .campo {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 label {
-  color: #334155;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: bold;
 }
 
 input {
-  padding: 12px;
-  border: 1px solid #cbd5e1;
+  width: 100%;
+  padding: 13px;
+  box-sizing: border-box;
+  border: 1px solid #94A3B8;
   border-radius: 6px;
+  background-color: #FFFFFF;
+  color: #334155;
   font-size: 14px;
   outline: none;
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: #94A3B8;
 }
 
 input:focus {
-  border-color: #0063e2;
-  box-shadow: 0 0 0 2px rgba(0, 99, 226, 0.12);
+  border-color: #0066FF;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.20);
 }
+
+/* BOTÃO */
 
 button {
   width: 100%;
-  padding: 13px;
+  padding: 14px;
+  margin-top: 8px;
   border: none;
   border-radius: 6px;
-  background-color: #0063e2;
-  color: #ffffff;
+  background-color: #0066FF;
+  color: #FFFFFF;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 button:hover {
-  background-color: #004fb5;
+  background-color: #0052CC;
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+  .pagina-login {
+    padding: 25px 16px;
+  }
+
+  .conteudo-login {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .area-logo {
+    width: 100%;
+  }
+
+  .logo-metaponto {
+    max-width: 260px;
+  }
+
+  .cartao-login {
+    max-width: 400px;
+    padding: 32px 26px;
+  }
 }

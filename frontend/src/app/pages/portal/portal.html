@@ -1,11 +1,111 @@
-<div class="portal-container">
 
-  <h1>Portal do Sistema de Ponto</h1>
+<div class="pagina-portal">
 
-  <p>Bem-vindo ao sistema!</p>
+  <!-- HEADER -->
+  <header class="header-portal">
 
-  <button (click)="sair()">
-    Sair
-  </button>
+    <!-- Espaço reservado para a logo -->
+    <div class="area-logo">
+      <img
+        src="/MP.png"
+        alt="Logo MetaPonto"
+        class="logo-metaponto"
+      />
+    </div>
+
+    <!-- Menu de navegação -->
+    <nav class="menu-navegacao">
+
+      <details class="menu-dropdown">
+
+        <summary class="botao-menu">
+          Menu de Navegação
+        </summary>
+
+        <div class="opcoes-menu">
+
+          <button type="button" (click)="abrirPerfil()">
+            Meu Perfil
+          </button>
+
+          <button type="button" (click)="sair()">
+            Sair
+          </button>
+
+        </div>
+
+      </details>
+
+    </nav>
+
+  </header>
+
+  <!-- BODY -->
+  <main class="conteudo-portal">
+
+    <button type="button" class="botao-marcar-ponto">
+      Marcar Ponto
+    </button>
+
+  </main>
+
+  <!-- MODAL MEU PERFIL -->
+  <div class="modal-fundo" *ngIf="perfilAberto">
+
+    <div class="modal-perfil">
+
+      <div class="modal-cabecalho">
+        <h2>Meu Perfil</h2>
+
+        <button type="button" (click)="fecharPerfil()">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-conteudo">
+
+        <p *ngIf="!usuario && !erroPerfil">
+          Carregando informações...
+        </p>
+
+        <p *ngIf="erroPerfil">
+          {{ erroPerfil }}
+        </p>
+
+        <div *ngIf="usuario">
+
+          <div class="campo-perfil">
+            <label>Nome</label>
+            <p>{{ usuario.nome }}</p>
+          </div>
+
+          <div class="campo-perfil">
+            <label>CPF</label>
+            <p>{{ usuario.cpf | slice:0:3 }}.{{ usuario.cpf | slice:3:6 }}.{{ usuario.cpf | slice:6:9 }}-{{ usuario.cpf | slice:9:11 }}</p>
+          </div>
+
+          <div class="campo-perfil">
+            <label>E-mail</label>
+            <p>{{ usuario.email }}</p>
+          </div>
+
+          <div class="campo-perfil">
+            <label>Status</label>
+            <p>{{ usuario.status }}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-rodape">
+        <button type="button" (click)="fecharPerfil()">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
