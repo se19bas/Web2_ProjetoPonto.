@@ -1,0 +1,48 @@
+
+<div class="conteudo-perfil">
+
+  <div class="perfil-container">
+
+    <div class="perfil-cabecalho">
+      <h2>Meu Perfil</h2>
+    </div>
+
+    <div class="perfil-conteudo">
+
+      <p *ngIf="!usuario && !erroPerfil">
+        Carregando informações...
+      </p>
+
+      <p *ngIf="erroPerfil">
+        {{ erroPerfil }}
+      </p>
+
+      <div *ngIf="usuario">
+
+        <div class="campo-perfil">
+          <label>Nome</label>
+          <p>{{ usuario.nome }}</p>
+        </div>
+
+        <div class="campo-perfil">
+          <label>CPF</label>
+          <p>{{ usuario.cpf | slice:0:3 }}.{{ usuario.cpf | slice:3:6 }}.{{ usuario.cpf | slice:6:9 }}-{{ usuario.cpf | slice:9:11 }}</p>
+        </div>
+
+        <div class="campo-perfil">
+          <label>E-mail</label>
+          <p>{{ usuario.email }}</p>
+        </div>
+
+        <div class="campo-perfil">
+          <label>Status</label>
+          <p>{{ usuario.status }}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

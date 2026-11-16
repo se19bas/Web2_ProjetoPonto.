@@ -1,0 +1,91 @@
+
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.conteudo-perfil {
+  width: 100%;
+  min-height: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.perfil-container {
+  width: 100%;
+  max-width: 600px;
+
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 6px 20px rgba(18, 41, 71, 0.12);
+}
+
+/* CABEÇALHO */
+
+.perfil-cabecalho {
+  padding: 20px 24px;
+
+  background-color: #122947;
+  color: #FFFFFF;
+}
+
+.perfil-cabecalho h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* CONTEÚDO */
+
+.perfil-conteudo {
+  padding: 24px;
+}
+
+.campo-perfil {
+  margin-bottom: 20px;
+}
+
+.campo-perfil:last-child {
+  margin-bottom: 0;
+}
+
+.campo-perfil label {
+  display: block;
+  margin-bottom: 6px;
+
+  color: #64748B;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.campo-perfil p {
+  margin: 0;
+  padding: 11px 13px;
+
+  background-color: #F4F6F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+
+  color: #334155;
+  font-size: 15px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+  .conteudo-perfil {
+    padding: 25px 15px;
+  }
+
+  .perfil-cabecalho,
+  .perfil-conteudo {
+    padding: 18px;
+  }
+
+}

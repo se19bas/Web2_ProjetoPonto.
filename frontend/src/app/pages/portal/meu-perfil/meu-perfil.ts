@@ -1,33 +1,26 @@
 
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-portal',
+  selector: 'app-meu-perfil',
   imports: [CommonModule],
-  templateUrl: './portal.html',
-  styleUrl: './portal.css'
+  templateUrl: './meu-perfil.html',
+  styleUrl: './meu-perfil.css'
 })
 
-export class Portal {
+export class MeuPerfil {
 
   usuario: any = null;
-  perfilAberto: boolean = false;
   erroPerfil: string = '';
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
-  abrirPerfil(): void {
-
-    this.perfilAberto = true;
-    this.usuario = null;
-    this.erroPerfil = '';
+  ngOnInit(): void {
 
     this.authService.obterUsuarioLogado().subscribe({
 
@@ -44,27 +37,6 @@ export class Portal {
         this.erroPerfil = 'Não foi possível carregar os dados do usuário.';
 
         this.cdr.markForCheck();
-      }
-
-    });
-
-  }
-
-  fecharPerfil(): void {
-    this.perfilAberto = false;
-  }
-
-  sair(): void {
-
-    this.authService.logout().subscribe({
-
-      next: () => {
-        console.log('Logout realizado com sucesso!');
-        this.router.navigate(['/login']);
-      },
-
-      error: (erro) => {
-        console.error('Erro ao realizar logout:', erro);
       }
 
     });

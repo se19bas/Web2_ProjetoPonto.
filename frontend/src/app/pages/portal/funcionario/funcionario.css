@@ -1,0 +1,23 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.conteudo-inicio-funcionario {
+  padding: 20px;
+}
+
+.conteudo-inicio-funcionario h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.conteudo-inicio-funcionario p {
+  margin: 0;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}

@@ -1,0 +1,51 @@
+
+:host {
+  display: flex;
+  flex: 1;
+  font-family: Arial, sans-serif;
+}
+
+.conteudo-inicio {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.botao-marcar-ponto {
+  padding: 16px 38px;
+  border: none;
+  border-radius: 8px;
+
+  background-color: #0066FF;
+  color: #FFFFFF;
+
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.18);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.botao-marcar-ponto:hover {
+  background-color: #0052CC;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+
+  .conteudo-inicio {
+    padding: 20px;
+  }
+
+  .botao-marcar-ponto {
+    width: 100%;
+    max-width: 300px;
+  }
+
+}
