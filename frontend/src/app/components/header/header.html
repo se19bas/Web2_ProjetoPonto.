@@ -1,0 +1,29 @@
+
+<header class="header-portal">
+  <div class="area-logo">
+    <img src="/MP.png" alt="Logo MetaPonto" class="logo-metaponto" />
+  </div>
+
+  <nav class="menu-navegacao">
+
+    <a routerLink="/portal/inicio">Início</a>
+
+    <a routerLink="/portal/meu-perfil">Meu Perfil</a>
+
+    <details class="menu-areas">
+      <summary>Menu</summary>
+
+      <div class="opcoes-menu">
+        <a routerLink="/portal/funcionario">
+          Área do Funcionário
+        </a>
+
+        <a routerLink="/portal/gestor">
+          Área do Gestor
+        </a>
+      </div>
+    </details>
+
+    <button type="button" (click)="sair()">Sair</button>
+  </nav>
+</header>
