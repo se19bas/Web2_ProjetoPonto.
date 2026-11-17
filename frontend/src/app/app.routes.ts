@@ -55,6 +55,13 @@ export const routes: Routes = [
               import('./pages/portal/funcionario/meus-pontos/meus-pontos').then(
                 (m) => m.MeusPontos
               )
+          },
+          {
+            path: 'avisos',
+            loadComponent: () =>
+              import('./pages/portal/funcionario/avisos/avisos').then(
+                (m) => m.Avisos
+              )
           }
 
         ]
@@ -64,6 +71,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/portal/gestor/gestor').then(
             (m) => m.Gestor
+          )
+      },
+      {
+        path: 'senha',
+        loadComponent: () =>
+          import('./pages/portal/senha/senha').then(
+            (m) => m.Senha
           )
       }
     ]

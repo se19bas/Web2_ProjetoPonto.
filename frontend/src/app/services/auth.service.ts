@@ -14,6 +14,13 @@ export interface AuthResponse {
   refreshToken: string;
 }
 
+
+export interface AlterarSenhaRequest {
+  senhaAtual: string;
+  novaSenha: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -61,4 +68,20 @@ export class AuthService {
       })
     );
   }
+
+  alterarSenha(senhaAtual: string, novaSenha: string): Observable<string> {
+
+    const dados: AlterarSenhaRequest = {
+      senhaAtual: senhaAtual,
+      novaSenha: novaSenha
+    };
+
+    return this.http.put(
+      `${this.apiUrl}/senha`,
+      dados,
+      { responseType: 'text' }
+    );
+  }
+
+
 }

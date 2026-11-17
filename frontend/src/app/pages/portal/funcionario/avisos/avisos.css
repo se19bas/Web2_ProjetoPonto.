@@ -1,0 +1,75 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-avisos {
+  padding: 20px;
+}
+
+.pagina-avisos h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-avisos {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-avisos h2 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 20px;
+}
+
+/* Mensagem de erro */
+.mensagem-erro {
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Lista de avisos */
+.lista-avisos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card individual */
+.card-aviso {
+  padding: 18px;
+  border: 1px solid #E0E0E0;
+  border-left: 5px solid #0066FF;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+}
+
+/* Mensagem */
+.card-aviso .mensagem {
+  margin: 0 0 15px;
+  color: #444444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Informações */
+.informacoes-aviso {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #666666;
+  font-size: 13px;
+}
