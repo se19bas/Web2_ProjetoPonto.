@@ -1,0 +1,66 @@
+
+<div class="pagina-meus-pontos">
+
+  <h1>Meus Pontos</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar seus registros de ponto
+    e acompanhar seus horários de trabalho.
+  </p>
+
+  <div class="area-registros">
+
+    <h2>Histórico de Pontos</h2>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando seus registros...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Nenhum registro -->
+    <p *ngIf="!carregando && !erro && registros.length === 0">
+      Você ainda não possui registros de ponto.
+    </p>
+
+    <!-- Tabela de registros -->
+    <div class="tabela-container"
+         *ngIf="!carregando && !erro && registros.length > 0">
+
+      <table>
+        <thead>
+        <tr>
+          <th>Data</th>
+          <th>Horário</th>
+          <th>Tipo</th>
+          <th>Distância da área</th>
+          <th>Dentro da área</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let registro of registros">
+          <td>{{ registro.dataHora | date:'dd/MM/yyyy' }}</td>
+
+          <td>{{ registro.dataHora | date:'HH:mm:ss' }}</td>
+
+          <td>{{ registro.tipo }}</td>
+
+          <td>{{ registro.distanciaArea }} m</td>
+
+          <td>
+            {{ registro.dentroArea ? 'Sim' : 'Não' }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

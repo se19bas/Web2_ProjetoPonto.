@@ -1,16 +1,16 @@
+
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-portal',
-  imports: [],
-  templateUrl: './portal.html',
-  styleUrl: './portal.css'
+  selector: 'app-header',
+  imports: [RouterLink],
+  templateUrl: './header.html',
+  styleUrl: './header.css'
 })
 
-
-export class Portal {
+export class Header {
 
   constructor(
     private authService: AuthService,

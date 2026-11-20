@@ -1,0 +1,33 @@
+
+<div class="layout-funcionario">
+
+  <aside class="sidebar-funcionario">
+    <h2>Funcionário</h2>
+
+    <nav class="menu-funcionario">
+      <a
+        routerLink="/portal/funcionario"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Início
+      </a>
+
+      <a
+        routerLink="/portal/funcionario/meus-pontos"
+        routerLinkActive="ativo">
+        Meus Pontos
+      </a>
+
+      <a
+        routerLink="/portal/funcionario/avisos"
+        routerLinkActive="ativo">
+        Avisos
+      </a>
+    </nav>
+  </aside>
+
+  <main class="conteudo-funcionario">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

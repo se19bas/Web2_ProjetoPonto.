@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  font-family: Arial, sans-serif;
+}
+
+.layout-funcionario {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background-color: #ebece7;
+}
+
+/* Sidebar */
+.sidebar-funcionario {
+  width: 230px;
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 25px 15px;
+  box-sizing: border-box;
+  background-color: #122947;
+  color: #FFFFFF;
+}
+
+.sidebar-funcionario h2 {
+  margin: 0 0 30px;
+  padding: 0 10px;
+  font-size: 19px;
+}
+
+/* Menu */
+.menu-funcionario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-funcionario a {
+  padding: 12px 15px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.menu-funcionario a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-funcionario a.ativo {
+  background-color: #0066FF;
+  font-weight: bold;
+}
+
+/* Conteúdo */
+.conteudo-funcionario {
+  flex: 1;
+  min-width: 0;
+  padding: 30px;
+  box-sizing: border-box;
+}

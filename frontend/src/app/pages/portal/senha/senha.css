@@ -1,0 +1,111 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-senha {
+  padding: 20px;
+}
+
+.pagina-senha h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-senha {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-senha h2 {
+  margin: 0 0 25px;
+  color: #122947;
+  font-size: 20px;
+}
+
+/* Formulário */
+.area-senha form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Campos */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 12px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.campo input:focus {
+  border-color: #0066FF;
+}
+
+/* Botão */
+.area-senha button {
+  padding: 13px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0066FF;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.area-senha button:hover {
+  background-color: #0052CC;
+}
+
+
+/* Mensagem de erro */
+.mensagem-erro {
+  margin: 0;
+  color: #D32F2F;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+  margin: 0;
+  color: #2E7D32;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Botão desabilitado */
+.area-senha button:disabled {
+  background-color: #999999;
+  cursor: not-allowed;
+}

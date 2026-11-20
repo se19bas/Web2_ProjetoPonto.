@@ -1,0 +1,55 @@
+
+<div class="pagina-avisos">
+
+  <h1>Avisos</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar os avisos enviados pelo gestor.
+  </p>
+
+  <div class="area-avisos">
+
+    <h2>Meus Avisos</h2>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando seus avisos...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Nenhum aviso -->
+    <p *ngIf="!carregando && !erro && avisos.length === 0">
+      Você não possui avisos no momento.
+    </p>
+
+    <!-- Lista de avisos -->
+    <div class="lista-avisos"
+         *ngIf="!carregando && !erro && avisos.length > 0">
+
+      <div class="card-aviso" *ngFor="let aviso of avisos">
+
+        <p class="mensagem">
+          {{ aviso.mensagem }}
+        </p>
+
+        <div class="informacoes-aviso">
+          <span>
+            Status: {{ aviso.status }}
+          </span>
+
+          <span>
+            Gestor: {{ aviso.idGestor }}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
