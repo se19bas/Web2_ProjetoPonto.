@@ -1,0 +1,301 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-hierarquia {
+  padding: 20px;
+}
+
+.pagina-hierarquia h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-hierarquia {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-hierarquia h2 {
+  margin: 0;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-hierarquia > p {
+  margin: 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+/* Cabeçalho: título à esquerda, filtros à direita */
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.contador {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #F2F5F9;
+  color: #122947;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* Filtros */
+.filtro-hierarquia {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-hierarquia label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-hierarquia input + label {
+  margin-left: 8px;
+}
+
+.filtro-hierarquia input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.filtro-hierarquia input.campo-texto {
+  width: 160px;
+}
+
+.filtro-hierarquia input:focus {
+  border-color: #0066FF;
+}
+
+.filtro-hierarquia button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-hierarquia button:hover {
+  background-color: #1D3A5D;
+}
+
+.filtro-hierarquia .botao-limpar {
+  background-color: transparent;
+  color: #122947;
+  border: 1px solid #122947;
+}
+
+.filtro-hierarquia .botao-limpar:hover {
+  background-color: #F2F5F9;
+}
+
+/* Mensagem de erro */
+.area-hierarquia > p.mensagem-erro {
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Lista de gestores */
+.lista-gestores {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-gestor {
+  border: 1px solid #E0E0E0;
+  border-left: 5px solid #122947;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cabecalho-gestor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 18px;
+  background-color: #F2F5F9;
+}
+
+.cabecalho-gestor h3 {
+  margin: 0 0 4px;
+  color: #122947;
+  font-size: 17px;
+}
+
+.info-gestor {
+  margin: 0;
+  color: #666666;
+  font-size: 13px;
+}
+
+.contador-equipe {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sem-equipe {
+  margin: 0;
+  padding: 15px 18px;
+  color: #666666;
+  font-size: 14px;
+}
+
+/* Tabela de funcionários */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabela-container table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+  /* Larguras definidas pelo colgroup, e não pelo conteúdo: assim as colunas
+     ficam na mesma posição em todos os cards */
+  table-layout: fixed;
+}
+
+.col-id {
+  width: 90px;
+}
+
+.col-cargo {
+  width: 30%;
+}
+
+.col-acoes {
+  width: 270px;
+}
+
+/* A coluna Nome ocupa o espaço restante */
+
+.tabela-container th {
+  padding: 12px 18px;
+  border-bottom: 2px solid #E0E0E0;
+  color: #122947;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.tabela-container td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #EEEEEE;
+  color: #444444;
+  text-align: left;
+  white-space: nowrap;
+  /* Texto maior que a coluna termina com "..." */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabela-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela-container tbody tr:hover {
+  background-color: #FAFBFC;
+}
+
+/* Links de ação */
+.link-acao {
+  color: #0066FF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-acao + .link-acao {
+  margin-left: 12px;
+}
+
+.link-acao:hover {
+  text-decoration: underline;
+}
+
+/* Inativar */
+.botao-inativar {
+  margin-left: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #D32F2F;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-inativar:hover {
+  text-decoration: underline;
+}
+
+.botao-inativar:disabled {
+  color: #999999;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.rotulo-inativado {
+  margin-left: 12px;
+  color: #999999;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.linha-inativada td {
+  color: #999999;
+}
+
+/* Mensagens das ações */
+.area-hierarquia > p.mensagem-sucesso {
+  margin-bottom: 15px;
+  color: #2E7D32;
+  font-weight: bold;
+}
+
+.area-hierarquia > p.mensagem-erro {
+  margin-bottom: 15px;
+}

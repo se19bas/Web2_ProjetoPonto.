@@ -1,0 +1,139 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-area {
+  padding: 20px;
+}
+
+.pagina-area h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-cartao {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-cartao h2 {
+  margin: 0 0 25px;
+  color: #122947;
+  font-size: 20px;
+}
+
+/* Formulário */
+.area-cartao form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 12px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.campo input:focus {
+  border-color: #0066FF;
+}
+
+/* Dois campos lado a lado */
+.linha {
+  display: flex;
+  gap: 20px;
+}
+
+.linha .campo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Botões */
+.area-cartao button {
+  padding: 13px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-principal {
+  border: none;
+  background-color: #0066FF;
+  color: #FFFFFF;
+}
+
+.botao-principal:hover {
+  background-color: #0052CC;
+}
+
+.botao-secundario {
+  border: 1px solid #122947;
+  background-color: transparent;
+  color: #122947;
+}
+
+.botao-secundario:hover {
+  background-color: #F2F5F9;
+}
+
+.area-cartao button:disabled {
+  border-color: #999999;
+  background-color: #999999;
+  color: #FFFFFF;
+  cursor: not-allowed;
+}
+
+/* Mensagens */
+.mensagem-erro {
+  margin: 0;
+  color: #D32F2F;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mensagem-sucesso {
+  margin: 0;
+  color: #2E7D32;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .linha {
+    flex-direction: column;
+  }
+}

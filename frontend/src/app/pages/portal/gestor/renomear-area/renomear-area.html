@@ -1,0 +1,95 @@
+
+<div class="pagina-renomear">
+
+  <h1>Renomear Área</h1>
+
+  <p class="descricao">
+    Busque a área pelo ID e informe o novo nome.
+  </p>
+
+  <!-- Busca -->
+  <div class="area-cartao">
+
+    <div class="cabecalho-cartao">
+
+      <h2>Buscar Área</h2>
+
+      <form class="filtro-busca" (ngSubmit)="buscarArea()">
+        <label for="idBusca">ID da área</label>
+
+        <input
+          type="number"
+          id="idBusca"
+          name="idBusca"
+          min="1"
+          [(ngModel)]="idBusca"
+          placeholder="ID"
+        />
+
+        <button type="submit" [disabled]="buscando">
+          {{ buscando ? 'Buscando...' : 'Buscar' }}
+        </button>
+      </form>
+
+    </div>
+
+    <p *ngIf="erroBusca" class="mensagem-erro">
+      {{ erroBusca }}
+    </p>
+
+    <p *ngIf="!area && !erroBusca && !buscando" class="texto-ajuda">
+      Nenhuma área selecionada.
+    </p>
+
+  </div>
+
+  <!-- Formulário -->
+  <div class="area-cartao area-formulario" *ngIf="area">
+
+    <h2>Área #{{ area.id }}</h2>
+
+    <div class="resumo-area">
+      <p><strong>Nome atual:</strong> {{ area.nome }}</p>
+      <p><strong>Status:</strong> {{ area.status }}</p>
+      <p *ngIf="area.latitude != null">
+        <strong>Coordenadas:</strong>
+        {{ area.latitude | number:'1.6-6' }}, {{ area.longitude | number:'1.6-6' }}
+      </p>
+    </div>
+
+    <form (ngSubmit)="salvar()">
+
+      <div class="campo">
+        <label for="novoNome">Novo nome *</label>
+        <input
+          type="text"
+          id="novoNome"
+          name="novoNome"
+          [(ngModel)]="novoNome"
+          placeholder="Digite o novo nome"
+        />
+      </div>
+
+      <p *ngIf="erro" class="mensagem-erro">
+        {{ erro }}
+      </p>
+
+      <p *ngIf="mensagemSucesso" class="mensagem-sucesso">
+        {{ mensagemSucesso }}
+      </p>
+
+      <div class="acoes">
+        <button type="button" class="botao-secundario" (click)="cancelar()">
+          Cancelar
+        </button>
+
+        <button type="submit" class="botao-principal" [disabled]="salvando">
+          {{ salvando ? 'Salvando...' : 'Salvar Nome' }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

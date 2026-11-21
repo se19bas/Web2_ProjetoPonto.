@@ -1,0 +1,230 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-avisos {
+  padding: 20px;
+}
+
+.pagina-avisos h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-avisos {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-avisos h2 {
+  margin: 0;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-avisos > p {
+  margin: 0 0 15px;
+  color: #444444;
+  font-size: 14px;
+}
+
+/* Cabeçalho: título à esquerda, filtros à direita */
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Contador de não lidos */
+.contador {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #0066FF;
+  color: #FFFFFF;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* Filtros */
+.filtro-avisos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-avisos label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-avisos input + label {
+  margin-left: 8px;
+}
+
+.filtro-avisos input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.filtro-avisos input:focus {
+  border-color: #0066FF;
+}
+
+.filtro-avisos button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-avisos button:hover {
+  background-color: #1D3A5D;
+}
+
+.filtro-avisos .botao-limpar {
+  background-color: transparent;
+  color: #122947;
+  border: 1px solid #122947;
+}
+
+.filtro-avisos .botao-limpar:hover {
+  background-color: #F2F5F9;
+}
+
+/* Opção "somente não lidos" */
+.opcao-nao-lidos {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 15px;
+  color: #444444;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Mensagens */
+.area-avisos > p.mensagem-erro {
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+.area-avisos > p.mensagem-sucesso {
+  color: #2E7D32;
+  font-weight: bold;
+}
+
+/* Lista de avisos */
+.lista-avisos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card individual */
+.card-aviso {
+  padding: 18px;
+  border: 1px solid #E0E0E0;
+  border-left: 5px solid #0066FF;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+}
+
+.card-aviso.aviso-lido {
+  border-left-color: #BDBDBD;
+  background-color: #FAFAFA;
+}
+
+.card-aviso .mensagem {
+  margin: 0 0 15px;
+  color: #444444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.card-aviso.aviso-lido .mensagem {
+  color: #777777;
+}
+
+/* Informações e ação */
+.informacoes-aviso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.detalhes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  color: #666666;
+  font-size: 13px;
+}
+
+/* Status */
+.status {
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #E3EEFF;
+  color: #0066FF;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.status-lido {
+  background-color: #EEEEEE;
+  color: #777777;
+}
+
+/* Botão marcar como lido */
+.botao-lido {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0066FF;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-lido:hover {
+  background-color: #0052CC;
+}
+
+.botao-lido:disabled {
+  background-color: #999999;
+  cursor: not-allowed;
+}

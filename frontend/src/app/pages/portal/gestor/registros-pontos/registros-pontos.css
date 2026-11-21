@@ -1,0 +1,162 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-registros {
+  padding: 20px;
+}
+
+.pagina-registros h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-registros {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-registros h2 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-registros p {
+  margin: 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+
+/* Cabeçalho da lista: título à esquerda, filtro à direita */
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cabecalho-lista h2 {
+  margin: 0;
+}
+
+/* Filtro por funcionário */
+.filtro-funcionario {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-funcionario label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-funcionario input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filtro-funcionario input:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.filtro-funcionario button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-funcionario button:hover {
+  background-color: #1D3A5D;
+}
+
+.filtro-funcionario .botao-limpar {
+  background-color: transparent;
+  color: #122947;
+  border: 1px solid #122947;
+}
+
+.filtro-funcionario .botao-limpar:hover {
+  background-color: #F2F5F9;
+}
+
+/* Mensagem de erro */
+/* Prefixado com a área: ".area-registros p" é mais específico e deixava a mensagem cinza */
+.area-registros p.mensagem-erro {
+  margin-bottom: 15px;
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Container da tabela */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Tabela */
+.tabela-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  font-size: 14px;
+}
+
+/* Cabeçalho */
+.tabela-container th {
+  padding: 14px 12px;
+  background-color: #122947;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Células */
+.tabela-container td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #E0E0E0;
+  color: #444444;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Linhas */
+.tabela-container tbody tr:hover {
+  background-color: #F2F5F9;
+}
+
+
+/* Espaço entre o primeiro filtro e o rótulo do segundo */
+.filtro-funcionario input + label {
+  margin-left: 8px;
+}

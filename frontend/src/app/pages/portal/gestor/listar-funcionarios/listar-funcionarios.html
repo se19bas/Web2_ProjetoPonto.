@@ -1,0 +1,223 @@
+
+<div class="pagina-funcionarios">
+
+  <h1>Funcionários</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar os funcionários cadastrados no sistema.
+  </p>
+
+  <div class="area-funcionarios">
+
+    <div class="cabecalho-lista">
+
+      <h2>Lista de Funcionários</h2>
+
+      <!-- Filtros por funcionário e por gestor -->
+      <form class="filtro-gestor" (ngSubmit)="carregarFuncionarios()">
+        <label for="idFuncionario">ID do funcionário</label>
+
+        <input
+          type="number"
+          id="idFuncionario"
+          name="idFuncionario"
+          min="1"
+          [(ngModel)]="idFuncionario"
+          placeholder="Todos"
+        />
+
+        <label for="idGestor">ID do gestor</label>
+
+        <input
+          type="number"
+          id="idGestor"
+          name="idGestor"
+          min="1"
+          [(ngModel)]="idGestor"
+          placeholder="Todos"
+        />
+
+        <button type="submit">Filtrar</button>
+
+        <button
+          type="button"
+          class="botao-limpar"
+          *ngIf="idFuncionario || idGestor"
+          (click)="limparFiltro()">
+          Limpar
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Mostrar somente os funcionários sem gestor -->
+    <div class="barra-opcoes" *ngIf="!carregando && !erro && funcionarios.length > 0">
+      <button
+        type="button"
+        class="botao-sem-gestor"
+        [class.ativo]="somenteSemGestor"
+        [attr.aria-pressed]="somenteSemGestor"
+        (click)="alternarSemGestor()">
+        {{ somenteSemGestor ? 'Mostrar todos' : 'Somente sem gestor' }}
+        <span class="contador-sem-gestor">{{ totalSemGestor }}</span>
+      </button>
+    </div>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando funcionários...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Resultado da inativação -->
+    <p *ngIf="mensagemAcao" class="mensagem-sucesso">
+      {{ mensagemAcao }}
+    </p>
+
+    <p *ngIf="erroAcao" class="mensagem-erro">
+      {{ erroAcao }}
+    </p>
+
+    <!-- Nenhum funcionário -->
+    <p *ngIf="!carregando && !erro && funcionariosVisiveis.length === 0">
+      {{ somenteSemGestor && funcionarios.length > 0 ? 'Todos os funcionários já possuem gestor.' : 'Nenhum funcionário encontrado.' }}
+    </p>
+
+    <!-- Tabela de funcionários -->
+    <div class="tabela-container"
+         *ngIf="!carregando && !erro && funcionariosVisiveis.length > 0">
+
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>E-mail</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th>Gestor</th>
+          <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let funcionario of funcionariosVisiveis">
+          <td>#{{ funcionario.idUsuario }}</td>
+
+          <td>
+            {{ funcionario.usuario.nome }}
+            <span class="selo-gestor" *ngIf="ehGestor(funcionario)">Gestor</span>
+          </td>
+
+          <td>{{ funcionario.usuario.cpf | cpf }}</td>
+
+          <td>{{ funcionario.usuario.email }}</td>
+
+          <td>{{ funcionario.cargo }}</td>
+
+          <td>{{ funcionario.usuario.status }}</td>
+
+          <!-- Gestor: mostra o atual ou o campo para definir um novo -->
+          <td>
+            <ng-container *ngIf="definindoGestorId !== funcionario.idUsuario; else editarGestor">
+              {{ funcionario.gestor?.idUsuario ? '#' + funcionario.gestor?.idUsuario : '-' }}
+            </ng-container>
+
+            <ng-template #editarGestor>
+              <form class="form-gestor" (ngSubmit)="salvarGestor(funcionario)">
+                <input
+                  type="number"
+                  name="novoIdGestor"
+                  min="1"
+                  placeholder="ID"
+                  [(ngModel)]="novoIdGestor"
+                />
+
+                <button type="submit" class="botao-salvar" [disabled]="salvandoGestor">
+                  {{ salvandoGestor ? '...' : 'Salvar' }}
+                </button>
+
+                <button type="button" class="botao-cancelar" (click)="cancelarDefinirGestor()">
+                  Cancelar
+                </button>
+              </form>
+            </ng-template>
+          </td>
+
+          <td>
+            <a
+              class="link-editar"
+              routerLink="/portal/gestor/alterar-funcionario"
+              [queryParams]="{ id: funcionario.idUsuario }">
+              Editar
+            </a>
+
+            <a
+              class="link-editar"
+              routerLink="/portal/gestor/registros-pontos"
+              [queryParams]="{ id: funcionario.idUsuario }">
+              Ver pontos
+            </a>
+
+            <button
+              type="button"
+              class="botao-acao"
+              *ngIf="definindoGestorId !== funcionario.idUsuario"
+              (click)="abrirDefinirGestor(funcionario)">
+              Definir gestor
+            </button>
+
+            <!-- Promover a gestor: só para ativos que ainda não são gestores -->
+            <button
+              type="button"
+              class="botao-acao"
+              *ngIf="promovendoId !== funcionario.idUsuario && !ehGestor(funcionario) && funcionario.usuario.status === 'ATIVO'"
+              (click)="abrirPromover(funcionario)">
+              Promover a gestor
+            </button>
+
+            <form
+              class="form-gestor form-promover"
+              *ngIf="promovendoId === funcionario.idUsuario"
+              (ngSubmit)="promover(funcionario)">
+              <input
+                type="text"
+                name="setorPromocao"
+                class="campo-setor"
+                placeholder="Setor"
+                maxlength="100"
+                [(ngModel)]="setorPromocao"
+              />
+
+              <button type="submit" class="botao-salvar" [disabled]="salvandoPromocao">
+                {{ salvandoPromocao ? '...' : 'Promover' }}
+              </button>
+
+              <button type="button" class="botao-cancelar" (click)="cancelarPromover()">
+                Cancelar
+              </button>
+            </form>
+
+            <button
+              type="button"
+              class="botao-inativar"
+              *ngIf="funcionario.usuario.status === 'ATIVO'"
+              [disabled]="inativandoId === funcionario.idUsuario"
+              (click)="inativar(funcionario)">
+              {{ inativandoId === funcionario.idUsuario ? 'Inativando...' : 'Inativar' }}
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

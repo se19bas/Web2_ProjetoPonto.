@@ -1,0 +1,176 @@
+
+<div class="pagina-hierarquia">
+
+  <h1>Hierarquia</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar os gestores e os funcionários subordinados a cada um.
+  </p>
+
+  <div class="area-hierarquia">
+
+    <div class="cabecalho-lista">
+
+      <h2>
+        Gestores e Equipes
+        <span class="contador" *ngIf="!carregando && !erro">
+          {{ gestores.length }} {{ gestores.length === 1 ? 'gestor' : 'gestores' }} ·
+          {{ totalFuncionarios }} {{ totalFuncionarios === 1 ? 'funcionário' : 'funcionários' }}
+        </span>
+      </h2>
+
+      <!-- Filtros -->
+      <form class="filtro-hierarquia" (ngSubmit)="buscar()">
+        <label for="idGestor">ID do gestor</label>
+
+        <input
+          type="number"
+          id="idGestor"
+          name="idGestor"
+          min="1"
+          [(ngModel)]="idGestor"
+          placeholder="Todos"
+        />
+
+        <label for="textoBusca">Nome, setor ou cargo</label>
+
+        <input
+          type="text"
+          id="textoBusca"
+          name="textoBusca"
+          class="campo-texto"
+          [(ngModel)]="textoBusca"
+          placeholder="Buscar..."
+        />
+
+        <button type="submit">Buscar</button>
+
+        <button
+          type="button"
+          class="botao-limpar"
+          *ngIf="filtroAtivo || idGestor || textoBusca"
+          (click)="limparFiltro()">
+          Limpar
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando hierarquia...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Resultado da inativação -->
+    <p *ngIf="mensagemAcao" class="mensagem-sucesso">
+      {{ mensagemAcao }}
+    </p>
+
+    <p *ngIf="erroAcao" class="mensagem-erro">
+      {{ erroAcao }}
+    </p>
+
+    <!-- Nenhum gestor -->
+    <p *ngIf="!carregando && !erro && gestoresVisiveis.length === 0">
+      {{ filtroAtivo ? 'Nenhum resultado para a busca.' : 'Nenhum gestor cadastrado.' }}
+    </p>
+
+    <!-- Lista de gestores -->
+    <div class="lista-gestores"
+         *ngIf="!carregando && !erro && gestoresVisiveis.length > 0">
+
+      <div class="card-gestor" *ngFor="let gestor of gestoresVisiveis">
+
+        <div class="cabecalho-gestor">
+          <div>
+            <h3>{{ gestor.nomeGestor }}</h3>
+            <p class="info-gestor">
+              Gestor #{{ gestor.idGestor }}
+              <span *ngIf="gestor.setor"> · Setor: {{ gestor.setor }}</span>
+            </p>
+          </div>
+
+          <span class="contador-equipe">
+            {{ gestor.funcionarios.length }}
+            {{ gestor.funcionarios.length === 1 ? 'funcionário' : 'funcionários' }}
+          </span>
+        </div>
+
+        <p class="sem-equipe" *ngIf="gestor.funcionarios.length === 0">
+          Nenhum funcionário subordinado.
+        </p>
+
+        <div class="tabela-container" *ngIf="gestor.funcionarios.length > 0">
+          <table>
+            <!-- Larguras fixas para as colunas ficarem alinhadas entre os cards -->
+            <colgroup>
+              <col class="col-id" />
+              <col class="col-nome" />
+              <col class="col-cargo" />
+              <col class="col-acoes" />
+            </colgroup>
+
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Cargo</th>
+              <th>Ações</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let funcionario of gestor.funcionarios"
+                [class.linha-inativada]="inativados.has(funcionario.idFuncionario)">
+              <td>#{{ funcionario.idFuncionario }}</td>
+
+              <td>{{ funcionario.nome }}</td>
+
+              <td>{{ funcionario.cargo }}</td>
+
+              <td>
+                <a
+                  class="link-acao"
+                  routerLink="/portal/gestor/alterar-funcionario"
+                  [queryParams]="{ id: funcionario.idFuncionario }">
+                  Editar
+                </a>
+
+                <a
+                  class="link-acao"
+                  routerLink="/portal/gestor/registros-pontos"
+                  [queryParams]="{ id: funcionario.idFuncionario }">
+                  Ver pontos
+                </a>
+
+                <span class="rotulo-inativado" *ngIf="inativados.has(funcionario.idFuncionario); else botaoInativar">
+                  Inativado
+                </span>
+
+                <ng-template #botaoInativar>
+                  <button
+                    type="button"
+                    class="botao-inativar"
+                    [disabled]="inativandoId === funcionario.idFuncionario"
+                    (click)="inativar(funcionario, gestor)">
+                    {{ inativandoId === funcionario.idFuncionario ? 'Inativando...' : 'Inativar' }}
+                  </button>
+                </ng-template>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -2,10 +2,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
+import { CpfPipe } from '../../../utils/cpf';
 
 @Component({
   selector: 'app-meu-perfil',
-  imports: [CommonModule],
+  imports: [CommonModule, CpfPipe],
   templateUrl: './meu-perfil.html',
   styleUrl: './meu-perfil.css'
 })

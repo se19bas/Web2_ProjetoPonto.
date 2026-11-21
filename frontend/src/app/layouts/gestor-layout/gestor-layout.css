@@ -1,0 +1,123 @@
+:host {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  font-family: Arial, sans-serif;
+}
+
+.layout-gestor {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background-color: #ebece7;
+}
+
+/* Sidebar */
+.sidebar-gestor {
+  width: 230px;
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 25px 15px;
+  box-sizing: border-box;
+  background-color: #122947;
+  color: #FFFFFF;
+}
+
+.sidebar-gestor h2 {
+  margin: 0 0 30px;
+  padding: 0 10px;
+  font-size: 19px;
+}
+
+/* Menu */
+.menu-gestor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-gestor a {
+  padding: 12px 15px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.menu-gestor a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-gestor a.ativo {
+  background-color: #0066FF;
+  font-weight: bold;
+}
+
+/* Separador entre as listagens e os submenus */
+.divisor {
+  width: 100%;
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Submenus */
+.submenu summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 15px;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submenu summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Seta que gira ao abrir */
+.submenu summary::after {
+  content: "▸";
+  font-size: 13px;
+  transition: transform 0.2s;
+}
+
+.submenu[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.submenu summary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Submenu com uma página ativa: título em negrito */
+.submenu.submenu-ativo summary {
+  font-weight: bold;
+}
+
+.itens-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 4px 0 4px 12px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.itens-submenu a {
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+/* Conteúdo */
+.conteudo-gestor {
+  flex: 1;
+  min-width: 0;
+  padding: 30px;
+  box-sizing: border-box;
+}

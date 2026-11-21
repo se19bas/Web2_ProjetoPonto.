@@ -1,0 +1,103 @@
+
+<div class="layout-gestor">
+
+  <aside class="sidebar-gestor">
+    <h2>Gestor</h2>
+
+    <nav class="menu-gestor">
+
+      <!-- Listagens / consultas -->
+      <a
+        routerLink="/portal/gestor"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Início
+      </a>
+
+      <a
+        routerLink="/portal/gestor/funcionarios"
+        routerLinkActive="ativo">
+        Listar Funcionários
+      </a>
+
+      <a
+        routerLink="/portal/gestor/hierarquia"
+        routerLinkActive="ativo">
+        Hierarquia
+      </a>
+
+      <a
+        routerLink="/portal/gestor/registros-pontos"
+        routerLinkActive="ativo">
+        Registros de Ponto
+      </a>
+
+      <a
+        routerLink="/portal/gestor/areas"
+        routerLinkActive="ativo">
+        Áreas Permitidas
+      </a>
+
+      <a
+        routerLink="/portal/gestor/avisos"
+        routerLinkActive="ativo">
+        Avisos
+      </a>
+
+      <hr class="divisor" />
+
+      <!-- Submenus de gerenciamento.
+           O routerLinkActive no <details> acompanha os links de dentro:
+           o submenu fica aberto e destacado quando uma das suas páginas está ativa -->
+      <details
+        class="submenu"
+        routerLinkActive="submenu-ativo"
+        #funcionariosAtivo="routerLinkActive"
+        [open]="funcionariosAtivo.isActive">
+        <summary>Gerenciar Funcionários</summary>
+
+        <div class="itens-submenu">
+          <a
+            routerLink="/portal/gestor/cadastrar-funcionario"
+            routerLinkActive="ativo">
+            Cadastrar Funcionário
+          </a>
+
+          <a
+            routerLink="/portal/gestor/alterar-funcionario"
+            routerLinkActive="ativo">
+            Alterar Funcionário
+          </a>
+        </div>
+      </details>
+
+      <details
+        class="submenu"
+        routerLinkActive="submenu-ativo"
+        #areasAtivo="routerLinkActive"
+        [open]="areasAtivo.isActive">
+        <summary>Gerenciar Áreas</summary>
+
+        <div class="itens-submenu">
+          <a
+            routerLink="/portal/gestor/cadastrar-area"
+            routerLinkActive="ativo">
+            Cadastrar Área
+          </a>
+
+          <a
+            routerLink="/portal/gestor/renomear-area"
+            routerLinkActive="ativo">
+            Renomear Área
+          </a>
+        </div>
+      </details>
+
+    </nav>
+  </aside>
+
+  <main class="conteudo-gestor">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

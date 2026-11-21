@@ -1,8 +1,110 @@
 
-<div class="conteudo-inicio">
+<div class="conteudo-inicio" [class.com-mapa]="mostrarMapa">
 
-  <button type="button" class="botao-marcar-ponto">
-    Marcar Ponto
-  </button>
+  <!-- Formulário de marcação de ponto -->
+  <section class="cartao-ponto">
+
+    <h1>Marcar Ponto</h1>
+
+    <p class="saudacao" *ngIf="nomeUsuario">
+      Olá, {{ nomeUsuario }}!
+    </p>
+
+    <div class="relogio">
+      <span class="hora">{{ agora | date:'HH:mm:ss' }}</span>
+      <span class="data">{{ dataPorExtenso }}</span>
+    </div>
+
+    <form (ngSubmit)="marcarPonto()">
+
+      <div class="campo">
+        <label for="tipo">Tipo de registro</label>
+        <select id="tipo" name="tipo" [(ngModel)]="tipo">
+          <option *ngFor="let t of tipos" [value]="t.valor">{{ t.rotulo }}</option>
+        </select>
+      </div>
+
+      <!-- Situação da localização -->
+      <div class="localizacao">
+        <p class="titulo-localizacao">Sua localização</p>
+
+        <p *ngIf="erroLocalizacao" class="mensagem-erro">
+          {{ erroLocalizacao }}
+        </p>
+
+        <p *ngIf="!erroLocalizacao && !localizacaoPronta" class="texto-ajuda">
+          Obtendo sua localização...
+        </p>
+
+        <ng-container *ngIf="localizacaoPronta">
+          <p class="coordenadas">
+            {{ latitude | number:'1.6-6' }}, {{ longitude | number:'1.6-6' }}
+            <span *ngIf="precisao != null" class="texto-ajuda">
+              (precisão de {{ precisao | number:'1.0-0' }} m)
+            </span>
+          </p>
+
+          <p *ngIf="areaMaisProxima" class="situacao-area"
+             [class.dentro]="dentroDaArea" [class.fora]="!dentroDaArea">
+            {{ dentroDaArea ? 'Dentro da área' : 'Fora da área' }}
+            <strong>{{ areaMaisProxima.area.nome }}</strong>
+            ({{ areaMaisProxima.distancia | number:'1.0-0' }} m)
+          </p>
+
+          <p *ngIf="!areaMaisProxima && areas.length === 0" class="texto-ajuda">
+            Nenhuma área permitida cadastrada.
+          </p>
+        </ng-container>
+      </div>
+
+      <p *ngIf="erro" class="mensagem-erro">
+        {{ erro }}
+      </p>
+
+      <!-- Resultado do último registro -->
+      <div *ngIf="ultimoRegistro" class="resultado"
+           [class.resultado-fora]="!ultimoRegistro.dentroArea">
+        <strong>Ponto de {{ rotuloTipoRegistrado.toLowerCase() }} registrado às {{ ultimoRegistro.dataHora | date:'HH:mm:ss' }}.</strong>
+        <span *ngIf="ultimoRegistro.dentroArea">
+          Você estava dentro da área permitida.
+        </span>
+        <span *ngIf="!ultimoRegistro.dentroArea">
+          O ponto foi registrado fora da área permitida
+          <ng-container *ngIf="ultimoRegistro.distanciaArea != null">
+            ({{ ultimoRegistro.distanciaArea | number:'1.0-0' }} m da área mais próxima)
+          </ng-container>
+          e seu gestor será avisado.
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="botao-marcar-ponto"
+        [disabled]="enviando || !localizacaoPronta || !idFuncionario">
+        {{ enviando ? 'Registrando...' : 'Marcar Ponto' }}
+      </button>
+
+    </form>
+
+  </section>
+
+  <!-- Mapa: só em telas largas -->
+  <section class="area-mapa" *ngIf="mostrarMapa">
+
+    <div #mapaContainer class="mapa" aria-label="Mapa com a sua localização e as áreas permitidas"></div>
+
+    <div class="legenda">
+      <span><i class="bolinha voce"></i> Você</span>
+      <span><i class="bolinha area"></i> Área permitida (raio de {{ raioArea }} m)</span>
+      <button
+        type="button"
+        class="botao-centralizar"
+        [disabled]="!localizacaoPronta"
+        (click)="centralizarNoUsuario()">
+        Centralizar em mim
+      </button>
+    </div>
+
+  </section>
 
 </div>
