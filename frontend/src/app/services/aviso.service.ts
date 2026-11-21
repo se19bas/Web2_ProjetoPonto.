@@ -17,7 +17,7 @@ export interface Aviso {
 })
 export class AvisoService {
 
-  private apiUrl = 'http://localhost:8080/sistemaponto/avisos/meus-avisos';
+  private apiUrl = `${environment.apiUrl}/sistemaponto/avisos/meus-avisos`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +25,7 @@ export class AvisoService {
     return this.http.get<Aviso[]>(this.apiUrl);
   }
 
-  // Consultas do gestor (usam environment.apiUrl para funcionar também no Azure)
+  // Consultas do gestor
 
   buscarPorId(idAviso: number): Observable<Aviso> {
     return this.http.get<Aviso>(

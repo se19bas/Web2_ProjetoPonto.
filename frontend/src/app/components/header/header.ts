@@ -1,6 +1,7 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { PerfilService } from '../../services/perfil.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -10,12 +11,24 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.css'
 })
 
-export class Header {
+export class Header implements OnInit {
+
+  // A "Área do Gestor" só aparece para gestores
+  ehGestor: boolean = false;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private perfilService: PerfilService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  ngOnInit(): void {
+    this.perfilService.ehGestor().subscribe((ehGestor) => {
+      this.ehGestor = ehGestor;
+      this.cdr.markForCheck();
+    });
+  }
 
   sair(): void {
 

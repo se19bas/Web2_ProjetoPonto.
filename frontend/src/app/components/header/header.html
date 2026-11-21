@@ -18,9 +18,11 @@
           Área do Funcionário
         </a>
 
-        <a routerLink="/portal/gestor">
-          Área do Gestor
-        </a>
+        @if (ehGestor) {
+          <a routerLink="/portal/gestor">
+            Área do Gestor
+          </a>
+        }
       </div>
     </details>
 

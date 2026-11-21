@@ -21,7 +21,7 @@ export interface RegistroPonto {
 })
 export class PontoService {
 
-  private apiUrl = 'http://localhost:8080/sistemaponto/pontos';
+  private apiUrl = `${environment.apiUrl}/sistemaponto/pontos`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,7 +46,7 @@ export class PontoService {
     );
   }
 
-  // Consultas do gestor (usam environment.apiUrl para funcionar também no Azure)
+  // Consultas do gestor
 
   listarTodos(): Observable<RegistroPonto[]> {
     return this.http.get<RegistroPonto[]>(

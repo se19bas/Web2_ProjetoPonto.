@@ -1,6 +1,7 @@
 
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { gestorGuard } from './guards/gestor.guard';
 
 export const routes: Routes = [
   {
@@ -68,6 +69,7 @@ export const routes: Routes = [
       },
       {
         path: 'gestor',
+        canActivate: [gestorGuard],
         loadComponent: () =>
           import('./layouts/gestor-layout/gestor-layout').then(
             (m) => m.GestorLayout
