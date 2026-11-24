@@ -43,4 +43,29 @@ export class TokenService {
       localStorage.removeItem(this.REFRESH_TOKEN_KEY);
     }
   }
+
+  /**
+   * Diz se o JWT está expirado (ou vai expirar nos próximos `margemSegundos`),
+   * lendo o campo "exp" do próprio token. Não valida a assinatura: serve só para
+   * o front decidir quando renovar. Devolve null se não for possível ler o token.
+   */
+  tokenExpirado(token: string | null, margemSegundos = 30): boolean | null {
+    if (!token) {
+      return null;
+    }
+
+    try {
+      const payload = token.split('.')[1];
+      const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const json = JSON.parse(atob(base64.padEnd(base64.length + (4 - base64.length % 4) % 4, '=')));
+
+      if (typeof json.exp !== 'number') {
+        return null;
+      }
+
+      return json.exp * 1000 <= Date.now() + margemSegundos * 1000;
+    } catch {
+      return null;
+    }
+  }
 }

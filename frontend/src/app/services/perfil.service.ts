@@ -11,15 +11,16 @@ import { TokenService } from './token.service';
  *
  * O backend não informa o perfil no /api/auth/me nem no token, mas o endpoint
  * de hierarquia só responde 200 para quem tem o papel GESTOR (403 para os demais).
- * O resultado fica guardado por token, para não repetir a chamada a cada tela;
- * quando outro usuário entra (token diferente), consulta de novo.
+ * O resultado fica guardado por sessão (refresh token), para não repetir a chamada
+ * a cada tela nem a cada renovação do access token; quando outro usuário entra
+ * (refresh token diferente), consulta de novo.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
 
-  private tokenConsultado: string | null = null;
+  private sessaoConsultada: string | null = null;
   private ehGestor$?: Observable<boolean>;
 
   constructor(
@@ -28,14 +29,14 @@ export class PerfilService {
   ) {}
 
   ehGestor(): Observable<boolean> {
-    const token = this.tokenService.obterToken();
+    const sessao = this.tokenService.obterRefreshToken() ?? this.tokenService.obterToken();
 
-    if (!token) {
+    if (!sessao) {
       return of(false);
     }
 
-    if (!this.ehGestor$ || this.tokenConsultado !== token) {
-      this.tokenConsultado = token;
+    if (!this.ehGestor$ || this.sessaoConsultada !== sessao) {
+      this.sessaoConsultada = sessao;
       this.ehGestor$ = this.http
         .get(`${environment.apiUrl}/sistemaponto/gestores/hierarquia`, { observe: 'response' })
         .pipe(
