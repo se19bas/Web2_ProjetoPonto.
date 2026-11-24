@@ -1,0 +1,87 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-meus-pontos {
+  padding: 20px;
+}
+
+.pagina-meus-pontos h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-registros {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-registros h2 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-registros p {
+  margin: 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+
+/* Mensagem de erro */
+.mensagem-erro {
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Container da tabela */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Tabela */
+.tabela-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  font-size: 14px;
+}
+
+/* Cabeçalho */
+.tabela-container th {
+  padding: 14px 12px;
+  background-color: #122947;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Células */
+.tabela-container td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #E0E0E0;
+  color: #444444;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Linhas */
+.tabela-container tbody tr:hover {
+  background-color: #F2F5F9;
+}

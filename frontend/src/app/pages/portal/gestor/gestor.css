@@ -1,0 +1,23 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.conteudo-inicio-gestor {
+  padding: 20px;
+}
+
+.conteudo-inicio-gestor h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.conteudo-inicio-gestor p {
+  margin: 0;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}

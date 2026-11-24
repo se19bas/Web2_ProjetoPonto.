@@ -1,0 +1,332 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-funcionarios {
+  padding: 20px;
+}
+
+.pagina-funcionarios h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-funcionarios {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-funcionarios h2 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-funcionarios p {
+  margin: 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+
+/* Cabeçalho da lista: título à esquerda, filtro à direita */
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cabecalho-lista h2 {
+  margin: 0;
+}
+
+/* Filtro por gestor */
+.filtro-gestor {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-gestor label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-gestor input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filtro-gestor input:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.filtro-gestor button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-gestor button:hover {
+  background-color: #1D3A5D;
+}
+
+.filtro-gestor .botao-limpar {
+  background-color: transparent;
+  color: #122947;
+  border: 1px solid #122947;
+}
+
+.filtro-gestor .botao-limpar:hover {
+  background-color: #F2F5F9;
+}
+
+/* Mensagem de erro */
+/* Prefixado com a área: ".area-funcionarios p" é mais específico e deixava a mensagem cinza */
+.area-funcionarios p.mensagem-erro {
+  margin-bottom: 15px;
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Container da tabela */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Tabela */
+.tabela-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  font-size: 14px;
+}
+
+/* Cabeçalho */
+.tabela-container th {
+  padding: 14px 12px;
+  background-color: #122947;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Células */
+.tabela-container td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #E0E0E0;
+  color: #444444;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Linhas */
+.tabela-container tbody tr:hover {
+  background-color: #F2F5F9;
+}
+
+/* Link de edição na tabela */
+.link-editar {
+  color: #0066FF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-editar:hover {
+  text-decoration: underline;
+}
+
+.link-editar + .link-editar {
+  margin-left: 12px;
+}
+
+/* Espaço entre o primeiro filtro e o rótulo do segundo */
+.filtro-gestor input + label {
+  margin-left: 8px;
+}
+
+/* Botão de inativar (aparência de link, em vermelho) */
+.botao-inativar {
+  margin-left: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #D32F2F;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-inativar:hover {
+  text-decoration: underline;
+}
+
+.botao-inativar:disabled {
+  color: #999999;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+/* Mensagem de sucesso */
+.area-funcionarios p.mensagem-sucesso {
+  margin: 0 0 15px;
+  color: #2E7D32;
+  font-weight: bold;
+}
+
+/* Botão "Definir gestor" (aparência de link, como os outros) */
+.botao-acao {
+  margin-left: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #0066FF;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-acao:hover {
+  text-decoration: underline;
+}
+
+/* Campo para definir o gestor dentro da linha */
+.form-gestor {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-gestor input {
+  width: 70px;
+  padding: 5px 8px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.form-gestor input:focus {
+  border-color: #0066FF;
+}
+
+.form-gestor button {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-gestor .botao-salvar {
+  border: none;
+  background-color: #0066FF;
+  color: #FFFFFF;
+}
+
+.form-gestor .botao-salvar:disabled {
+  background-color: #999999;
+  cursor: not-allowed;
+}
+
+.form-gestor .botao-cancelar {
+  border: 1px solid #122947;
+  background-color: transparent;
+  color: #122947;
+}
+
+/* Botão "Somente sem gestor" */
+.barra-opcoes {
+  margin-bottom: 15px;
+}
+
+.botao-sem-gestor {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid #122947;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #122947;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-sem-gestor:hover {
+  background-color: #F2F5F9;
+}
+
+.botao-sem-gestor.ativo {
+  background-color: #122947;
+  color: #FFFFFF;
+}
+
+.contador-sem-gestor {
+  padding: 1px 8px;
+  border-radius: 10px;
+  background-color: #E0E0E0;
+  color: #122947;
+  font-size: 12px;
+}
+
+.botao-sem-gestor.ativo .contador-sem-gestor {
+  background-color: #FFFFFF;
+}
+
+/* Selo "Gestor" ao lado do nome */
+.selo-gestor {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* Campo de setor ao promover (fica na coluna Ações) */
+.form-promover {
+  display: inline-flex;
+  margin-left: 12px;
+}
+
+.form-promover .campo-setor {
+  width: 120px;
+}

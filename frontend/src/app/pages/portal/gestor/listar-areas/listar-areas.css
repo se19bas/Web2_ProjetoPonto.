@@ -1,0 +1,224 @@
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-areas {
+  padding: 20px;
+}
+
+.pagina-areas h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.area-lista {
+  padding: 25px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-lista h2 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-lista p {
+  margin: 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+
+/* Cabeçalho da lista: título à esquerda, filtro à direita */
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cabecalho-lista h2 {
+  margin: 0;
+}
+
+/* Busca por ID */
+.filtro-area {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-area label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-area input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filtro-area input:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.filtro-area button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-area button:hover {
+  background-color: #1D3A5D;
+}
+
+.filtro-area .botao-limpar {
+  background-color: transparent;
+  color: #122947;
+  border: 1px solid #122947;
+}
+
+.filtro-area .botao-limpar:hover {
+  background-color: #F2F5F9;
+}
+
+/* Mensagem de erro */
+/* Prefixado com a área: ".area-lista p" é mais específico e deixava a mensagem cinza */
+.area-lista p.mensagem-erro {
+  margin-bottom: 15px;
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Container da tabela */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Tabela */
+.tabela-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  font-size: 14px;
+}
+
+/* Cabeçalho */
+.tabela-container th {
+  padding: 14px 12px;
+  background-color: #122947;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Células */
+.tabela-container td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #E0E0E0;
+  color: #444444;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Linhas */
+.tabela-container tbody tr:hover {
+  background-color: #F2F5F9;
+}
+
+/* Status */
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #E8F5E9;
+  color: #2E7D32;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.status-inativa {
+  background-color: #FDECEA;
+  color: #D32F2F;
+}
+
+/* Link para o mapa */
+.link-mapa {
+  color: #0066FF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-mapa:hover {
+  text-decoration: underline;
+}
+
+/* Ações da tabela */
+.link-acao {
+  color: #0066FF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-acao:hover {
+  text-decoration: underline;
+}
+
+/* Botão de inativar (aparência de link, em vermelho) */
+.botao-inativar {
+  margin-left: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #D32F2F;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-inativar:hover {
+  text-decoration: underline;
+}
+
+.botao-inativar:disabled {
+  color: #999999;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+/* Mensagem de sucesso */
+.area-lista p.mensagem-sucesso {
+  margin: 0 0 15px;
+  color: #2E7D32;
+  font-weight: bold;
+}

@@ -1,0 +1,233 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.pagina-renomear {
+  padding: 20px;
+}
+
+.pagina-renomear h1 {
+  margin: 0 0 15px;
+  color: #122947;
+  font-size: 28px;
+}
+
+.descricao {
+  margin: 0 0 30px;
+  color: #444444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Cartões */
+.area-cartao {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.area-cartao h2 {
+  margin: 0;
+  color: #122947;
+  font-size: 20px;
+}
+
+.area-formulario h2 {
+  margin-bottom: 25px;
+}
+
+.texto-ajuda {
+  margin: 15px 0 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+/* Cabeçalho da busca: título à esquerda, busca à direita */
+.cabecalho-cartao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filtro-busca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filtro-busca label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filtro-busca input {
+  width: 90px;
+  padding: 8px 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.filtro-busca input:focus {
+  border-color: #0066FF;
+}
+
+.filtro-busca button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #122947;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-busca button:hover {
+  background-color: #1D3A5D;
+}
+
+/* Formulário */
+.area-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.campo input,
+.campo select {
+  padding: 12px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.campo select {
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #0066FF;
+}
+
+/* Dois campos lado a lado */
+.linha {
+  display: flex;
+  gap: 20px;
+}
+
+.linha .campo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Botões */
+.acoes {
+  display: flex;
+  gap: 12px;
+}
+
+.acoes button {
+  flex: 1;
+  padding: 13px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-principal {
+  border: none;
+  background-color: #0066FF;
+  color: #FFFFFF;
+}
+
+.botao-principal:hover {
+  background-color: #0052CC;
+}
+
+.botao-secundario {
+  border: 1px solid #122947;
+  background-color: transparent;
+  color: #122947;
+}
+
+.botao-secundario:hover {
+  background-color: #F2F5F9;
+}
+
+button:disabled {
+  background-color: #999999;
+  cursor: not-allowed;
+}
+
+/* Mensagens */
+.mensagem-erro {
+  margin: 15px 0 0;
+  color: #D32F2F;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.area-formulario .mensagem-erro,
+.mensagem-sucesso {
+  margin: 0;
+}
+
+.mensagem-sucesso {
+  color: #2E7D32;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .linha {
+    flex-direction: column;
+  }
+}
+
+/* Resumo da área selecionada */
+.resumo-area {
+  margin: -10px 0 20px;
+  padding: 12px 15px;
+  border-radius: 6px;
+  background-color: #F2F5F9;
+}
+
+.resumo-area p {
+  margin: 4px 0;
+  color: #444444;
+  font-size: 14px;
+}
+
+.resumo-area strong {
+  color: #122947;
+}

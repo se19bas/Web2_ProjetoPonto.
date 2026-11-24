@@ -1,0 +1,133 @@
+
+<div class="pagina-avisos">
+
+  <h1>Avisos</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar os avisos gerados pelos registros de ponto
+    e marcá-los como lidos.
+  </p>
+
+  <div class="area-avisos">
+
+    <div class="cabecalho-lista">
+
+      <h2>
+        {{ tituloLista }}
+        <span class="contador" *ngIf="!carregando && totalNaoLidos > 0">
+          {{ totalNaoLidos }} não {{ totalNaoLidos === 1 ? 'lido' : 'lidos' }}
+        </span>
+      </h2>
+
+      <!-- Filtros -->
+      <form class="filtro-avisos" (ngSubmit)="carregarAvisos()">
+        <label for="idGestor">ID do gestor</label>
+
+        <input
+          type="number"
+          id="idGestor"
+          name="idGestor"
+          min="1"
+          [(ngModel)]="idGestor"
+          placeholder="ID"
+        />
+
+        <label for="idAviso">ID do aviso</label>
+
+        <input
+          type="number"
+          id="idAviso"
+          name="idAviso"
+          min="1"
+          [(ngModel)]="idAviso"
+          placeholder="Todos"
+        />
+
+        <button type="submit">Buscar</button>
+
+        <button
+          type="button"
+          class="botao-limpar"
+          (click)="limparFiltro()">
+          Limpar
+        </button>
+      </form>
+
+    </div>
+
+    <label class="opcao-nao-lidos" *ngIf="!carregando && avisos.length > 0">
+      <input
+        type="checkbox"
+        name="somenteNaoLidos"
+        [(ngModel)]="somenteNaoLidos"
+      />
+      Mostrar somente não lidos
+    </label>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando avisos...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Resultado de marcar como lido -->
+    <p *ngIf="mensagemAcao" class="mensagem-sucesso">
+      {{ mensagemAcao }}
+    </p>
+
+    <p *ngIf="erroAcao" class="mensagem-erro">
+      {{ erroAcao }}
+    </p>
+
+    <!-- Nenhum aviso -->
+    <p *ngIf="!carregando && !erro && avisosVisiveis.length === 0">
+      {{ avisos.length > 0 ? 'Todos os avisos já foram lidos.' : 'Nenhum aviso encontrado.' }}
+    </p>
+
+    <!-- Lista de avisos -->
+    <div class="lista-avisos"
+         *ngIf="!carregando && !erro && avisosVisiveis.length > 0">
+
+      <div
+        class="card-aviso"
+        *ngFor="let aviso of avisosVisiveis"
+        [class.aviso-lido]="aviso.status === 'LIDO'">
+
+        <p class="mensagem">
+          {{ aviso.mensagem }}
+        </p>
+
+        <div class="informacoes-aviso">
+
+          <div class="detalhes">
+            <span>Aviso #{{ aviso.idAviso }}</span>
+            <span>Registro de ponto #{{ aviso.idRegistro }}</span>
+            <span>Gestor #{{ aviso.idGestor }}</span>
+
+            <span class="status" [class.status-lido]="aviso.status === 'LIDO'">
+              {{ aviso.status === 'LIDO' ? 'Lido' : 'Não lido' }}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            class="botao-lido"
+            *ngIf="podeMarcarComoLido(aviso)"
+            [disabled]="marcandoId === aviso.idAviso"
+            (click)="marcarComoLido(aviso)">
+            {{ marcandoId === aviso.idAviso ? 'Marcando...' : 'Marcar como lido' }}
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

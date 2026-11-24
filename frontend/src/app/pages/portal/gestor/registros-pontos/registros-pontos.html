@@ -1,0 +1,113 @@
+
+<div class="pagina-registros">
+
+  <h1>Registros de Ponto</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar os registros de ponto de todos os funcionários,
+    filtrar pelos registros de um funcionário ou buscar um registro pelo ID.
+  </p>
+
+  <div class="area-registros">
+
+    <div class="cabecalho-lista">
+
+      <h2>
+        {{ tituloLista }}
+      </h2>
+
+      <!-- Filtros por registro e por funcionário -->
+      <form class="filtro-funcionario" (ngSubmit)="carregarRegistros()">
+        <label for="idRegistro">ID do registro</label>
+
+        <input
+          type="number"
+          id="idRegistro"
+          name="idRegistro"
+          min="1"
+          [(ngModel)]="idRegistro"
+          placeholder="Todos"
+        />
+
+        <label for="idFuncionario">ID do funcionário</label>
+
+        <input
+          type="number"
+          id="idFuncionario"
+          name="idFuncionario"
+          min="1"
+          [(ngModel)]="idFuncionario"
+          placeholder="Todos"
+        />
+
+        <button type="submit">Filtrar</button>
+
+        <button
+          type="button"
+          class="botao-limpar"
+          *ngIf="idRegistro || idFuncionario || filtroAtivo"
+          (click)="limparFiltro()">
+          Limpar
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando registros...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Nenhum registro -->
+    <p *ngIf="!carregando && !erro && registros.length === 0">
+      {{ filtradoPorFuncionario && !idRegistro ? 'Este funcionário ainda não possui registros de ponto.' : 'Nenhum registro de ponto encontrado.' }}
+    </p>
+
+    <!-- Tabela de registros -->
+    <div class="tabela-container"
+         *ngIf="!carregando && !erro && registros.length > 0">
+
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th *ngIf="!filtradoPorFuncionario">Funcionário</th>
+          <th>Data</th>
+          <th>Horário</th>
+          <th>Tipo</th>
+          <th>Distância da área</th>
+          <th>Dentro da área</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let registro of registros">
+          <td>#{{ registro.idRegistroPonto }}</td>
+
+          <td *ngIf="!filtradoPorFuncionario">#{{ registro.idFuncionario }}</td>
+
+          <td>{{ registro.dataHora | date:'dd/MM/yyyy' }}</td>
+
+          <td>{{ registro.dataHora | date:'HH:mm:ss' }}</td>
+
+          <td>{{ registro.tipo }}</td>
+
+          <td>{{ registro.distanciaArea != null ? (registro.distanciaArea | number:'1.0-0') + ' m' : '-' }}</td>
+
+          <td>
+            {{ registro.dentroArea ? 'Sim' : 'Não' }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

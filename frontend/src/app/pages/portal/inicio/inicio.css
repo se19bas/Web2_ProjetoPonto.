@@ -1,0 +1,281 @@
+
+:host {
+  display: flex;
+  flex: 1;
+  font-family: Arial, sans-serif;
+}
+
+/* Sem mapa: só o formulário, centralizado */
+.conteudo-inicio {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #ebece7;
+}
+
+/* Com mapa: metade formulário, metade mapa */
+.conteudo-inicio.com-mapa {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Cartão do formulário */
+.cartao-ponto {
+  width: 100%;
+  max-width: 520px;
+  justify-self: center;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cartao-ponto h1 {
+  margin: 0 0 6px;
+  color: #122947;
+  font-size: 26px;
+}
+
+.saudacao {
+  margin: 0 0 20px;
+  color: #444444;
+  font-size: 15px;
+}
+
+/* Relógio */
+.relogio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 18px;
+  border-radius: 8px;
+  background-color: #122947;
+  color: #FFFFFF;
+}
+
+.relogio .hora {
+  font-size: 38px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.relogio .data {
+  margin-top: 4px;
+  font-size: 14px;
+  text-transform: capitalize;
+  opacity: 0.85;
+}
+
+/* Formulário */
+.cartao-ponto form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  color: #122947;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.campo select {
+  padding: 12px;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+.campo select:focus {
+  border-color: #0066FF;
+}
+
+/* Localização */
+.localizacao {
+  padding: 14px 16px;
+  border-radius: 6px;
+  background-color: #F2F5F9;
+}
+
+.localizacao p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.titulo-localizacao {
+  margin-bottom: 6px !important;
+  color: #122947;
+  font-weight: bold;
+}
+
+.coordenadas {
+  color: #444444;
+}
+
+.texto-ajuda {
+  color: #666666;
+  font-size: 13px;
+}
+
+.situacao-area {
+  margin-top: 8px !important;
+  font-weight: bold;
+}
+
+.situacao-area.dentro {
+  color: #2E7D32;
+}
+
+.situacao-area.fora {
+  color: #D32F2F;
+}
+
+/* Mensagens */
+.mensagem-erro {
+  margin: 0;
+  color: #D32F2F;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-left: 5px solid #2E7D32;
+  border-radius: 6px;
+  background-color: #E8F5E9;
+  color: #1B5E20;
+  font-size: 14px;
+}
+
+.resultado.resultado-fora {
+  border-left-color: #D32F2F;
+  background-color: #FDECEA;
+  color: #B71C1C;
+}
+
+/* Botão principal */
+.botao-marcar-ponto {
+  padding: 16px 38px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0066FF;
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.18);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.botao-marcar-ponto:hover:not(:disabled) {
+  background-color: #0052CC;
+  transform: translateY(-2px);
+}
+
+.botao-marcar-ponto:disabled {
+  background-color: #999999;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Mapa */
+.area-mapa {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Altura fixa: acompanha a tela, mas sem passar de 520px nem ficar menor que 320px */
+.mapa {
+  height: clamp(320px, calc(100vh - 300px), 520px);
+  /* Mantém os controles do Leaflet abaixo do menu do header */
+  z-index: 0;
+}
+
+.legenda {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 16px;
+  color: #444444;
+  font-size: 13px;
+}
+
+.bolinha {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #BDBDBD;
+  vertical-align: middle;
+}
+
+.bolinha.voce {
+  background-color: #0066FF;
+}
+
+.bolinha.area {
+  background-color: #2E7D32;
+}
+
+.botao-centralizar {
+  margin-left: auto;
+  padding: 7px 12px;
+  border: 1px solid #122947;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #122947;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-centralizar:hover:not(:disabled) {
+  background-color: #F2F5F9;
+}
+
+.botao-centralizar:disabled {
+  color: #999999;
+  border-color: #CCCCCC;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .conteudo-inicio {
+    padding: 15px;
+  }
+
+  .cartao-ponto {
+    padding: 20px;
+  }
+
+  .relogio .hora {
+    font-size: 32px;
+  }
+}

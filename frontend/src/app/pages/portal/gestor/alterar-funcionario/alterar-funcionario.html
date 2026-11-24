@@ -1,0 +1,147 @@
+
+<div class="pagina-alterar">
+
+  <h1>Alterar Funcionário</h1>
+
+  <p class="descricao">
+    Busque o funcionário pelo ID e altere os dados desejados.
+  </p>
+
+  <!-- Busca -->
+  <div class="area-cartao">
+
+    <div class="cabecalho-cartao">
+
+      <h2>Buscar Funcionário</h2>
+
+      <form class="filtro-busca" (ngSubmit)="buscarFuncionario()">
+        <label for="idBusca">ID do funcionário</label>
+
+        <input
+          type="number"
+          id="idBusca"
+          name="idBusca"
+          min="1"
+          [(ngModel)]="idBusca"
+          placeholder="ID"
+        />
+
+        <button type="submit" [disabled]="buscando">
+          {{ buscando ? 'Buscando...' : 'Buscar' }}
+        </button>
+      </form>
+
+    </div>
+
+    <p *ngIf="erroBusca" class="mensagem-erro">
+      {{ erroBusca }}
+    </p>
+
+    <p *ngIf="!funcionario && !erroBusca && !buscando" class="texto-ajuda">
+      Nenhum funcionário selecionado.
+    </p>
+
+  </div>
+
+  <!-- Formulário de alteração -->
+  <div class="area-cartao area-formulario" *ngIf="funcionario">
+
+    <h2>Dados do Funcionário #{{ funcionario.idUsuario }}</h2>
+
+    <form (ngSubmit)="salvar()">
+
+      <div class="campo">
+        <label for="nome">Nome *</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          maxlength="150"
+          [(ngModel)]="nome"
+          placeholder="Digite o nome completo"
+        />
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label for="cpf">CPF *</label>
+          <input
+            type="text"
+            id="cpf"
+            name="cpf"
+            maxlength="14"
+            [(ngModel)]="cpf"
+            placeholder="000.000.000-00"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="cargo">Cargo *</label>
+          <input
+            type="text"
+            id="cargo"
+            name="cargo"
+            maxlength="100"
+            [(ngModel)]="cargo"
+            placeholder="Ex.: Analista"
+          />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          maxlength="150"
+          [(ngModel)]="email"
+          placeholder="Digite o e-mail"
+        />
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label for="status">Status</label>
+          <select id="status" name="status" [(ngModel)]="status">
+            <option value="ATIVO">Ativo</option>
+            <option value="INATIVO">Inativo</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="idGestor">ID do gestor</label>
+          <input
+            type="number"
+            id="idGestor"
+            name="idGestor"
+            min="1"
+            [(ngModel)]="idGestor"
+            placeholder="Sem gestor"
+          />
+        </div>
+      </div>
+
+      <p *ngIf="erro" class="mensagem-erro">
+        {{ erro }}
+      </p>
+
+      <p *ngIf="mensagemSucesso" class="mensagem-sucesso">
+        {{ mensagemSucesso }}
+      </p>
+
+      <div class="acoes">
+        <button type="button" class="botao-secundario" (click)="cancelar()">
+          Cancelar
+        </button>
+
+        <button type="submit" class="botao-principal" [disabled]="salvando">
+          {{ salvando ? 'Salvando...' : 'Salvar Alterações' }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

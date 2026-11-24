@@ -1,0 +1,137 @@
+
+<div class="pagina-areas">
+
+  <h1>Áreas Permitidas</h1>
+
+  <p class="descricao">
+    Aqui você pode consultar as áreas onde os funcionários podem registrar o ponto.
+  </p>
+
+  <div class="area-lista">
+
+    <div class="cabecalho-lista">
+
+      <h2>Lista de Áreas</h2>
+
+      <!-- Busca por ID -->
+      <form class="filtro-area" (ngSubmit)="carregarAreas()">
+        <label for="idArea">ID da área</label>
+
+        <input
+          type="number"
+          id="idArea"
+          name="idArea"
+          min="1"
+          [(ngModel)]="idArea"
+          placeholder="Todas"
+        />
+
+        <button type="submit">Buscar</button>
+
+        <button
+          type="button"
+          class="botao-limpar"
+          *ngIf="idArea"
+          (click)="limparFiltro()">
+          Limpar
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Carregamento -->
+    <p *ngIf="carregando">
+      Carregando áreas...
+    </p>
+
+    <!-- Erro -->
+    <p *ngIf="erro" class="mensagem-erro">
+      {{ erro }}
+    </p>
+
+    <!-- Resultado da inativação -->
+    <p *ngIf="mensagemAcao" class="mensagem-sucesso">
+      {{ mensagemAcao }}
+    </p>
+
+    <p *ngIf="erroAcao" class="mensagem-erro">
+      {{ erroAcao }}
+    </p>
+
+    <!-- Nenhuma área -->
+    <p *ngIf="!carregando && !erro && areas.length === 0">
+      Nenhuma área encontrada.
+    </p>
+
+    <!-- Tabela de áreas -->
+    <div class="tabela-container"
+         *ngIf="!carregando && !erro && areas.length > 0">
+
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Status</th>
+          <th>Localização</th>
+          <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let area of areas">
+          <td>#{{ area.id }}</td>
+
+          <td>{{ area.nome }}</td>
+
+          <td>{{ area.latitude | number:'1.6-6' }}</td>
+
+          <td>{{ area.longitude | number:'1.6-6' }}</td>
+
+          <td>
+            <span class="status" [class.status-inativa]="area.status !== 'ATIVA'">
+              {{ area.status }}
+            </span>
+          </td>
+
+          <td>
+            <a
+              class="link-mapa"
+              *ngIf="area.latitude != null && area.longitude != null; else semLocalizacao"
+              [href]="linkMapa(area)"
+              target="_blank"
+              rel="noopener">
+              Ver no mapa
+            </a>
+
+            <ng-template #semLocalizacao>-</ng-template>
+          </td>
+
+          <td>
+            <a
+              class="link-acao"
+              routerLink="/portal/gestor/renomear-area"
+              [queryParams]="{ id: area.id }">
+              Renomear
+            </a>
+
+            <button
+              type="button"
+              class="botao-inativar"
+              *ngIf="area.status === 'ATIVA'"
+              [disabled]="inativandoId === area.id"
+              (click)="inativar(area)">
+              {{ inativandoId === area.id ? 'Inativando...' : 'Inativar' }}
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

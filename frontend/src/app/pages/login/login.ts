@@ -20,11 +20,9 @@ export class Login {
 
     this.authService.login(this.email, this.senha).subscribe({
 
-      next: (resposta) => {
-        console.log('Login realizado com sucesso!');
-        console.log('Access Token:', resposta.token);
-        console.log('Refresh Token:', resposta.refreshToken);
-        this.router.navigate(['/portal'])
+      next: () => {
+        // Os tokens já foram salvos pelo AuthService (não exibir no console)
+        this.router.navigate(['/portal']);
       },
 
       error: (erro) => {
